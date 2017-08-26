@@ -250,6 +250,43 @@ A detailed example of a valid proof of control expression follows:
 
   </section>
 
+  <section>
+    <h2>Credential Repository</h2>
+
+
+    <p>
+A verifiable credential repository service may be listed by including it in
+the <code>service</code> property.
+    </p>
+
+    <pre class="example nohighlight" title="">
+{
+  "@context": "https://w3id.org/veres-one/v1",
+  "id": "did:v1:215cb1dc-1f44-4695-a07f-97649cad9938",
+   <span class="highlight">"service": [... list of services associated with DID Object ...]</span>
+}
+    </pre>
+
+    <p>
+A detailed example of the expression of a verifiable credential repository
+service follows:
+    </p>
+
+    <pre class="example nohighlight" title="">
+{
+  "@context": "https://w3id.org/veres-one/v1",
+  "id": "did:v1:215cb1dc-1f44-4695-a07f-97649cad9938",
+  "service": [{
+    // the verifiable credential repository service
+    "id": "did:v1:5d6c3b20-56a9-42e1-bfc8-ed7e685c9039",
+    "type": "VerifiableCredentialRepository",
+    "url": "https://wallet.veres.io/"
+  }]
+}
+    </pre>
+
+  </section>
+
 </section>
 
 <section>
