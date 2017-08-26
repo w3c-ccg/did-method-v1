@@ -392,13 +392,13 @@ are defined for this service:
         <tr>
           <td>201</td>
           <td>
-DID creation was successful. The HTTP <code>Location</code> header will
+DID creation request was successful. The HTTP <code>Location</code> header will
 contain the URL for the newly created DID Object.
           </td>
         </tr>
         <tr>
           <td>400</td>
-          <td>DID creation failed.</td>
+          <td>DID creation request failed.</td>
         </tr>
         <tr>
           <td>409</td>
@@ -408,7 +408,7 @@ contain the URL for the newly created DID Object.
     </table>
 
     <p>
-An example exchange of DID creation is shown below:
+An example exchange of DID creation request is shown below:
     </p>
 
     <pre class="example highlight" title="DID creation request">
@@ -459,7 +459,7 @@ If the creation of the DID was successful, an HTTP 201 status code is
 expected in return:
     </p>
 
-    <pre class="example highlight" title="Successful ledger creation response">
+    <pre class="example highlight" title="Successful DID creation response">
 HTTP/1.1 201 Created
 Location: https://ledger.example.com/dids/did:v1:215cb1dc-1f44-4695-a07f-97649cad9938
 Cache-Control: no-cache, no-store, must-revalidate
@@ -473,34 +473,130 @@ Transfer-Encoding: chunked
   </section>
 
   <section>
-    <h2>Update</h2>
+    <h2>Updating a DID Object</h2>
 
     <p>
-
+A DID is updated by performing an HTTP POST of a signed DID Object
+to the <code>veresOneUpdateService</code>. The following HTTP status codes
+are defined for this service:
     </p>
+
+    <table class="simple">
+      <thead>
+        <th style="white-space: nowrap">HTTP Status</th>
+        <th>Description</th>
+      </thead>
+      <tbody>
+        <tr>
+          <td>200</td>
+          <td>
+DID update request was successful.
+          </td>
+        </tr>
+        <tr>
+          <td>400</td>
+          <td>DID update request failed.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>
+An example exchange for a DID update request is shown below:
+    </p>
+
+    <pre class="example highlight" title="DID Object update request">
+POST /dids/did:v1:215cb1dc-1f44-4695-a07f-97649cad9938 HTTP/1.1
+Host: example.com
+Content-Type: application/ld+json
+Content-Length: 1062
+Accept: application/ld+json, application/json, text/plain, */*
+Accept-Encoding: gzip, deflate
+
+{
+  "@context": "https://w3id.org/veres-one/v1",
+  "id": "did:v1:215cb1dc-1f44-4695-a07f-97649cad9938",
+  "proofOfControl": [{
+    "type": "RsaSignatureProof2017",
+    "publicKey": {
+      "id": "did:v1:215cb1dc-1f44-4695-a07f-97649cad9938/keys/2",
+      "type": "RsaCryptographicKey",
+      "owner": "did:v1:215cb1dc-1f44-4695-a07f-97649cad9938",
+      "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n",
+    }
+  }, {
+    "type": "RsaSignatureProof2017",
+    "publicKey": {
+      "id": "did:v1:215cb1dc-1f44-4695-a07f-97649cad9938/keys/3",
+      "type": "RsaCryptographicKey",
+      "owner": "did:v1:215cb1dc-1f44-4695-a07f-97649cad9938",
+      "publicKeyPem": "-----BEGIN PUBLIC KEY-----\r\nMIIBk3j...j2jSIk\r\n-----END PUBLIC KEY-----\r\n",
+    }
+  }],
+  "proofOfUpdateAuthorization": [{
+    "type": "RsaSignatureProof2017",
+    "publicKey": {
+      "id": "did:v1:215cb1dc-1f44-4695-a07f-97649cad9938/keys/2",
+      "type": "CryptographicKey",
+      "owner": "did:v1:215cb1dc-1f44-4695-a07f-97649cad9938",
+      "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n",
+    }
+  }],
+  "service": [{
+    "id": "did:v1:5d6c3b20-56a9-42e1-bfc8-ed7e685c9039",
+    "type": "VerifiableCredentialRepository",
+    "url": "https://wallet.veres.io/"
+  }],
+  "signature": {
+    "type": "LinkedDataSignature2017",
+    "created": "2017-07-25T17:29:49Z",
+    "creator": "did:v1:215cb1dc-1f44-4695-a07f-97649cad9938/keys/1",
+    "signatureValue": "oxpLJV...LHbAdaO=="
+  }
+}
+    </pre>
+
+    <p>
+If the update request for the DID was successful, an HTTP 200 status code is
+expected in return:
+    </p>
+
+    <pre class="example highlight" title="Successful ledger creation response">
+HTTP/1.1 200 Success
+Cache-Control: no-cache, no-store, must-revalidate
+Pragma: no-cache
+Expires: 0
+Date: Fri, 14 Oct 2016 18:35:33 GMT
+Connection: keep-alive
+Transfer-Encoding: chunked
+    </pre>
+
   </section>
 
   <section>
     <h2>Delegating Control</h2>
 
-    <p>
-
+    <p class="issue">
+TBD: Explain that delegation of control is merely placing a digital wallet
+provider in the proofOfControl field.
     </p>
   </section>
 
   <section>
     <h2>Key Rotation and Transferring Control</h2>
 
-    <p>
-
+    <p class="issue">
+TBD: Explain that transferring control and rotating keys is a matter of
+adding and removing the appropriate keys from proofofControl and
+proofOfUpdateAuthorization.
     </p>
   </section>
 
   <section>
     <h2>Recovering a DID</h2>
 
-    <p>
-
+    <p class="issue">
+TBD: Explain that recoverying a DID is a matter of meeting the requirements
+under proofOfUpdateAuthorization.
     </p>
   </section>
 
