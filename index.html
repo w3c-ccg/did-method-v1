@@ -166,25 +166,40 @@ Kiara Robles, Kaliya Young, Brian Weller, and Betty Dhamers.
     <h2>Proof of Control</h2>
 
     <p>
-
+Proof of control enables an entity to assert that they are in control of the
+DID Object for the purposes of simple authentication with systems.
     </p>
-  </section>
 
-  <section>
-    <h2>Proof of Authorization to Update</h2>
+    <pre class="example nohighlight" title="Expressing proof of control">
+{
+  "@context": "https://w3id.org/veres-one/v1",
+  "id": "did:v1:215cb1dc-1f44-4695-a07f-97649cad9938",
+  <span class="highlight">"proofOfControl": [... array of acceptable proof mechanisms ...]</span>
+}
+    </pre>
 
     <p>
-
+A detailed example of a valid proof of control expression follows:
     </p>
+
+    <pre class="example nohighlight" title="Detailed example of proof of control entry">
+{
+  "@context": "https://w3id.org/veres-one/v1",
+  "id": "did:v1:215cb1dc-1f44-4695-a07f-97649cad9938",
+  "proofOfControl": [{
+    "type": "RsaSignatureProof2017",
+    "publicKey": {
+      "id": "did:v1:215cb1dc-1f44-4695-a07f-97649cad9938/keys/2",
+      "type": "RsaCryptographicKey",
+      "owner": "did:v1:215cb1dc-1f44-4695-a07f-97649cad9938",
+      "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n",
+    }
+  }]
+}
+    </pre>
+
   </section>
 
-  <section>
-    <h2>Credential Repository</h2>
-
-    <p>
-
-    </p>
-  </section>
 
 </section>
 
@@ -243,10 +258,11 @@ Kiara Robles, Kaliya Young, Brian Weller, and Betty Dhamers.
   The following is a complete example of a typical Veres One DID Object:
     </p>
 
-    <pre class="nohighlight">
+    <pre class="example nohighlight">
 {
   "@context": "https://w3id.org/veres-one/v1",
   "id": "did:v1:215cb1dc-1f44-4695-a07f-97649cad9938",
+  // proof of control may be asserted by personal laptop or mobile phone
   "proofOfControl": [{
     "type": "RsaSignatureProof2017",
     "publicKey": {
@@ -264,8 +280,10 @@ Kiara Robles, Kaliya Young, Brian Weller, and Betty Dhamers.
       "publicKeyPem": "-----BEGIN PUBLIC KEY-----\r\nMIIBk3j...j2jSIk\r\n-----END PUBLIC KEY-----\r\n",
     }
   }],
+  // proof of update authorization may be provided by digital wallet + friend OR
+  // by mobile phone
   "proofOfUpdateAuthorization": [{
-    // recovery of DID requires 2 of 3 proofs (one wallet and one friend)
+    // update of DID Object requires 2 of 3 proofs (one wallet and one friend)
     "type": "DidControlProof2017",
     "minimumProofs": 2,
     "did": [
@@ -274,19 +292,22 @@ Kiara Robles, Kaliya Young, Brian Weller, and Betty Dhamers.
       "did:v1:fd6f099c-2b76-4c1a-951d-ed86a5cf73fa"
     ],
   }, {
+    // update of DID Object requires 1 signature from known secure device (mobile phone)
     "type": "RsaSignatureProof2017",
     "publicKey": {
-      "id": "did:v1:215cb1dc-1f44-4695-a07f-97649cad9938/keys/1",
+      "id": "did:v1:215cb1dc-1f44-4695-a07f-97649cad9938/keys/2",
       "type": "CryptographicKey",
       "owner": "did:v1:215cb1dc-1f44-4695-a07f-97649cad9938",
       "publicKeyPem": "-----BEGIN PUBLIC KEY-----\r\nMIIBfja...kd8Jf\r\n-----END PUBLIC KEY-----\r\n",
     }
   }],
   "service": [{
+    // the verifiable credential repository service
     "id": "did:v1:5d6c3b20-56a9-42e1-bfc8-ed7e685c9039",
     "type": "VerifiableCredentialRepository",
     "url": "https://wallet.veres.io/"
   }],
+  // signature performed by at least one proof of update authorization mechanism
   "signature": {
     "type": "LinkedDataSignature2017",
     "created": "2017-07-25T17:29:49Z",
@@ -306,7 +327,7 @@ a result has a number of legacy objects that developers should be aware of. The
 typical format for these objects are shown below:
     </p>
 
-    <pre class="nohighlight">
+    <pre class="example nohighlight">
 {
   "@context": "https://w3id.org/identity/v1",
   "id": "did:8743453f-e45e-4ac6-b85f-4513ba4c1460",
