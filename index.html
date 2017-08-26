@@ -200,6 +200,55 @@ A detailed example of a valid proof of control expression follows:
 
   </section>
 
+  <section>
+    <h2>Proof of Authorization to Update</h2>
+
+    <p>
+Proof of authorization to update describes how an entity can assert that it
+has the right to modify a DID Object to the Veres One ledger.
+    </p>
+
+    <pre class="example nohighlight" title="">
+{
+  "@context": "https://w3id.org/veres-one/v1",
+  "id": "did:v1:215cb1dc-1f44-4695-a07f-97649cad9938",
+  <span class="highlight">"proofOfUpdateAuthorization": [... array of acceptable proof mechanisms ...]</span>
+}
+    </pre>
+
+    <p>
+A detailed example of a valid proof of control expression follows:
+    </p>
+
+    <pre class="example nohighlight" title="">
+{
+  "@context": "https://w3id.org/veres-one/v1",
+  "id": "did:v1:215cb1dc-1f44-4695-a07f-97649cad9938",
+  // proof of update authorization may be provided by digital wallet + friend OR
+  // by mobile phone
+  "proofOfUpdateAuthorization": [{
+    // update of DID Object requires 2 of 3 proofs (one wallet and one friend)
+    "type": "DidControlProof2017",
+    "minimumProofs": 2,
+    "did": [
+      "did:v1:5d6c3b20-56a9-42e1-bfc8-ed7e685c9039",
+      "did:v1:976cda70-9d9f-4eb8-9b24-9593f17d345f",
+      "did:v1:fd6f099c-2b76-4c1a-951d-ed86a5cf73fa"
+    ],
+  }, {
+    // update of DID Object requires a known secure device (mobile phone)
+    "type": "RsaSignatureProof2017",
+    "publicKey": {
+      "id": "did:v1:215cb1dc-1f44-4695-a07f-97649cad9938/keys/2",
+      "type": "CryptographicKey",
+      "owner": "did:v1:215cb1dc-1f44-4695-a07f-97649cad9938",
+      "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n",
+    }
+  }]
+}
+    </pre>
+
+  </section>
 
 </section>
 
