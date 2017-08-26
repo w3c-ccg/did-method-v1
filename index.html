@@ -80,6 +80,16 @@
         inlineCSS: true
       };
     </script>
+    <style>
+pre .highlight {
+  font-weight: bold;
+  color: green;
+}
+pre .comment {
+  font-weight: bold;
+  color: Gray;
+}
+    </style>
   </head>
   <body>
     <section id='abstract'>
@@ -179,7 +189,7 @@ Kiara Robles, Kaliya Young, Brian Weller, and Betty Dhamers.
 </section>
 
 <section>
-  <h1>Basic Operations</h1>
+  <h1>Operations</h1>
 
   <section>
     <h2>Create</h2>
@@ -219,6 +229,117 @@ Kiara Robles, Kaliya Young, Brian Weller, and Betty Dhamers.
     <p>
 
     </p>
+  </section>
+
+</section>
+
+<section>
+  <h1>Appendix A: Examples</h2>
+
+  <section>
+    <h2>Typical DID Object</h2>
+
+    <p>
+  The following is a complete example of a typical Veres One DID Object:
+    </p>
+
+    <pre class="nohighlight">
+{
+  "@context": "https://w3id.org/veres-one/v1",
+  "id": "did:v1:215cb1dc-1f44-4695-a07f-97649cad9938",
+  "proofOfControl": [{
+    "type": "RsaSignatureProof2017",
+    "publicKey": {
+      "id": "did:v1:215cb1dc-1f44-4695-a07f-97649cad9938/keys/2",
+      "type": "RsaCryptographicKey",
+      "owner": "did:v1:215cb1dc-1f44-4695-a07f-97649cad9938",
+      "publicKeyPem": "-----BEGIN PUBLIC KEY-----\r\nMIIBIjA...DAQAB\r\n-----END PUBLIC KEY-----\r\n",
+    }
+  }, {
+    "type": "RsaSignatureProof2017",
+    "publicKey": {
+      "id": "did:v1:215cb1dc-1f44-4695-a07f-97649cad9938/keys/3",
+      "type": "RsaCryptographicKey",
+      "owner": "did:v1:215cb1dc-1f44-4695-a07f-97649cad9938",
+      "publicKeyPem": "-----BEGIN PUBLIC KEY-----\r\nMIIBk3j...j2jSIk\r\n-----END PUBLIC KEY-----\r\n",
+    }
+  }],
+  "proofOfUpdateAuthorization": [{
+    // recovery of DID requires 2 of 3 proofs (one wallet and one friend)
+    "type": "DidControlProof2017",
+    "minimumProofs": 2,
+    "did": [
+      "did:v1:5d6c3b20-56a9-42e1-bfc8-ed7e685c9039",
+      "did:v1:976cda70-9d9f-4eb8-9b24-9593f17d345f",
+      "did:v1:fd6f099c-2b76-4c1a-951d-ed86a5cf73fa"
+    ],
+  }, {
+    "type": "RsaSignatureProof2017",
+    "publicKey": {
+      "id": "did:v1:215cb1dc-1f44-4695-a07f-97649cad9938/keys/1",
+      "type": "CryptographicKey",
+      "owner": "did:v1:215cb1dc-1f44-4695-a07f-97649cad9938",
+      "publicKeyPem": "-----BEGIN PUBLIC KEY-----\r\nMIIBfja...kd8Jf\r\n-----END PUBLIC KEY-----\r\n",
+    }
+  }],
+  "service": [{
+    "id": "did:v1:5d6c3b20-56a9-42e1-bfc8-ed7e685c9039",
+    "type": "VerifiableCredentialRepository",
+    "url": "https://wallet.veres.io/"
+  }],
+  "signature": {
+    "type": "LinkedDataSignature2017",
+    "created": "2017-07-25T17:29:49Z",
+    "creator": "did:v1:215cb1dc-1f44-4695-a07f-97649cad9938/keys/1",
+    "signatureValue": "oxpLJV...LHbAdaO=="
+  }
+}
+    </pre>
+  </section>
+
+  <section>
+    <h2>Legacy DID Object</h2>
+
+    <p>
+The Veres One ledger was launched in 2015, predated this specification, and as
+a result has a number of legacy objects that developers should be aware of. The
+typical format for these objects are shown below:
+    </p>
+
+    <pre class="nohighlight">
+{
+  "@context": "https://w3id.org/identity/v1",
+  "id": "did:8743453f-e45e-4ac6-b85f-4513ba4c1460",
+  "idp": "did:d1d1d1d1-d1d1-d1d1-d1d1-d1d1d1d1d1d1",
+  "accessControl": {
+    "writePermission": [
+      {
+        "id": "did:8743453f-e45e-4ac6-b85f-4513ba4c1460/keys/1",
+        "type": "CryptographicKey"
+      },
+      {
+        "id": "did:d1d1d1d1-d1d1-d1d1-d1d1-d1d1d1d1d1d1",
+        "type": "Identity"
+      }
+    ]
+  },
+  "publicKey": [
+    {
+      "id": "did:8743453f-e45e-4ac6-b85f-4513ba4c1460/keys/1",
+      "type": "CryptographicKey",
+      "owner": "did:8743453f-e45e-4ac6-b85f-4513ba4c1460",
+      "publicKeyPem": "-----BEGIN PUBLIC KEY-----\r\nMIIBIjA...DAQAB\r\n-----END PUBLIC KEY-----\r\n",
+      "@context": "https://w3id.org/identity/v1"
+    }
+  ],
+  "signature": {
+    "type": "LinkedDataSignature2015",
+    "created": "2017-07-25T17:29:49Z",
+    "creator": "did:8743453f-e45e-4ac6-b85f-4513ba4c1460/keys/1",
+    "signatureValue": "LJoxpV...daOLHbA=="
+  }
+}
+    </pre>
   </section>
 
 </section>
