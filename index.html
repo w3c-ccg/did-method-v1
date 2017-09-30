@@ -279,7 +279,7 @@ Services may be listed by including them at the top-level of the DID Document.
 {
   "@context": "https://w3id.org/veres-one/v1",
   "id": "did:v1:215cb1dc-1f44-4695-a07f-97649cad9938",
-   <span class="highlight">"credentialRepository": "https://wallet.veres.io/"</span>
+   <span class="highlight">"credentialRepositoryService": "https://wallet.veres.io/"</span>
 }
     </pre>
 
@@ -291,7 +291,7 @@ A detailed example of the expression of a service description follows:
 {
   "@context": "https://w3id.org/veres-one/v1",
   "id": "did:v1:215cb1dc-1f44-4695-a07f-97649cad9938",
-  "service": [{
+  "credentialRepositoryService": [{
     // the verifiable credential repository service
     "id": "did:v1:5d6c3b20-56a9-42e1-bfc8-ed7e685c9039",
     "type": "VerifiableCredentialRepository",
