@@ -75,7 +75,7 @@
         // This is important for Rec-track documents, do not copy a patent URI from a random
         // document unless you know what you're doing. If in doubt ask your friendly neighbourhood
         // Team Contact.
-        wgPatentURI:  "",
+        wgPatentURI:  "https://www.w3.org/community/about/agreements/cla/",
         maxTocLevel: 4,
         inlineCSS: true
       };
@@ -159,81 +159,31 @@ DID spec to build the Veres One Ledger.
   <h1>Basic Concepts</h1>
 
   <section>
-    <h2>Proof of Control</h2>
+    <h2>Authentication</h2>
 
     <p>
-Proof of control enables an entity to assert that they are in control of the
-DID Object for the purposes of simple authentication with systems.
+Authentication is the process the ledger uses to determine if an entity
+is associated with a DID.
     </p>
 
-    <pre class="example nohighlight" title="Expressing proof of control">
+    <pre class="example nohighlight" title="Expressing authentication credentials">
 {
   "@context": "https://w3id.org/veres-one/v1",
   "id": "did:v1:215cb1dc-1f44-4695-a07f-97649cad9938",
-  <span class="highlight">"proofOfControl": [... array of acceptable proof mechanisms ...]</span>
+  <span class="highlight">"authenticationCredentials": [... array of acceptable authentication credentials ...]</span>
 }
     </pre>
 
     <p>
-A detailed example of a valid proof of control expression follows:
+A detailed example of a valid set of authentication credentials follows:
     </p>
 
-    <pre class="example nohighlight" title="Detailed example of proof of control entry">
+    <pre class="example nohighlight" title="Detailed example of authentication credentials entry">
 {
   "@context": "https://w3id.org/veres-one/v1",
   "id": "did:v1:215cb1dc-1f44-4695-a07f-97649cad9938",
-  "proofOfControl": [{
-    "type": "RsaSignatureProof2017",
-    "publicKey": {
-      "id": "did:v1:215cb1dc-1f44-4695-a07f-97649cad9938/keys/2",
-      "type": "RsaCryptographicKey",
-      "owner": "did:v1:215cb1dc-1f44-4695-a07f-97649cad9938",
-      "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n",
-    }
-  }]
-}
-    </pre>
-
-  </section>
-
-  <section>
-    <h2>Proof of Authorization to Update</h2>
-
-    <p>
-Proof of authorization to update describes how an entity can assert that it
-has the right to modify a DID Object to the Veres One ledger.
-    </p>
-
-    <pre class="example nohighlight" title="">
-{
-  "@context": "https://w3id.org/veres-one/v1",
-  "id": "did:v1:215cb1dc-1f44-4695-a07f-97649cad9938",
-  <span class="highlight">"proofOfUpdateAuthorization": [... array of acceptable proof mechanisms ...]</span>
-}
-    </pre>
-
-    <p>
-A detailed example of a valid proof of control expression follows:
-    </p>
-
-    <pre class="example nohighlight" title="">
-{
-  "@context": "https://w3id.org/veres-one/v1",
-  "id": "did:v1:215cb1dc-1f44-4695-a07f-97649cad9938",
-  // proof of update authorization may be provided by digital wallet + friend OR
-  // by mobile phone
-  "proofOfUpdateAuthorization": [{
-    // update of DID Object requires 2 of 3 proofs (one wallet and one friend)
-    "type": "DidControlProof2017",
-    "minimumProofs": 2,
-    "did": [
-      "did:v1:5d6c3b20-56a9-42e1-bfc8-ed7e685c9039",
-      "did:v1:976cda70-9d9f-4eb8-9b24-9593f17d345f",
-      "did:v1:fd6f099c-2b76-4c1a-951d-ed86a5cf73fa"
-    ],
-  }, {
-    // update of DID Object requires a known secure device (mobile phone)
-    "type": "RsaSignatureProof2017",
+  "authenticationCredentials": [{
+    "type": "RsaSignature2017",
     "publicKey": {
       "id": "did:v1:215cb1dc-1f44-4695-a07f-97649cad9938/keys/2",
       "type": "CryptographicKey",
@@ -247,25 +197,94 @@ A detailed example of a valid proof of control expression follows:
   </section>
 
   <section>
-    <h2>Credential Repository</h2>
-
+    <h2>Authorization</h2>
 
     <p>
-A verifiable credential repository service may be listed by including it in
-the <code>service</code> property.
+Authorization is the process the ledger uses to determine what an entity
+may to do the DID Document.
     </p>
 
     <pre class="example nohighlight" title="">
 {
   "@context": "https://w3id.org/veres-one/v1",
   "id": "did:v1:215cb1dc-1f44-4695-a07f-97649cad9938",
-   <span class="highlight">"service": [... list of services associated with DID Object ...]</span>
+  <span class="highlight">"authorizationCapability": [... array of capability descriptions ...]</span>
 }
     </pre>
 
     <p>
-A detailed example of the expression of a verifiable credential repository
-service follows:
+A detailed example of a valid set of authorization capability descriptions
+follows:
+    </p>
+
+    <pre class="example nohighlight" title="">
+{
+  "@context": "https://w3id.org/veres-one/v1",
+  "id": "did:v1:215cb1dc-1f44-4695-a07f-97649cad9938",
+  // proof of update authorization may be provided by digital wallet + friend OR
+  // by mobile phone
+  "authorizationCapability": [{
+    // this entity may update any field in this DID Document using any
+    // authentication mechanism understood by the ledger
+    "permission": "UpdateDidDocument",
+    "entity": "did:v1:215cb1dc-1f44-4695-a07f-97649cad9938"
+  }, {
+    // this entity may update the authenticationCredential field in this
+    // DID Document as long as they authenticate with RsaSignature2017
+    "entity": "did:v1:b5f8c320-f7ca-4869-85e6-a1bcbf825b2a",
+    "permission": "UpdateDidDocument",
+    "field": ["authenticationCredential"],
+    "permittedProofType": [{
+      "proofType": "RsaSignature2017"
+    }]
+  }, {
+    // anyone may update the authenticationCredential and writeAuthorization
+    // fields as long as they provide a specific multi-signature proof
+    "permission": "UpdateDidDocument",
+    "field": ["authenticationCredential", "authorizationCapability"],
+    "permittedProofType": [{
+      "proofType": "RsaSignature2017",
+      "minimumSignatures": 3,
+      "authenticationCredential": [{
+        "id": "did:v1:304ebc3e-7997-4bf4-a915-dd87e8455941/keys/123",
+        "type": "RsaCryptographicKey",
+        "owner": "did:v1:304ebc3e-7997-4bf4-a915-dd87e8455941",
+        "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
+      }, {
+        "id": "did:v1:0f22346a-a360-4f3e-9b42-3366e348e941/keys/foo",
+        "type": "RsaCryptographicKey",
+        "owner": "did:v1:0f22346a-a360-4f3e-9b42-3366e348e941",
+        "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
+      }, {
+        "id": "did:v1:a8d00377-e9f1-44df-a1b9-55072e13262a/keys/abc",
+        "type": "RsaCryptographicKey",
+        "owner": "did:v1:a8d00377-e9f1-44df-a1b9-55072e13262a",
+        "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
+      }]
+    }]
+}
+    </pre>
+
+  </section>
+
+  <section>
+    <h2>Service Descriptions</h2>
+
+
+    <p>
+Services may be listed by including them at the top-level of the DID Document.
+    </p>
+
+    <pre class="example nohighlight" title="Simple example of a service description">
+{
+  "@context": "https://w3id.org/veres-one/v1",
+  "id": "did:v1:215cb1dc-1f44-4695-a07f-97649cad9938",
+   <span class="highlight">"credentialRepository": "https://wallet.veres.io/"</span>
+}
+    </pre>
+
+    <p>
+A detailed example of the expression of a service description follows:
     </p>
 
     <pre class="example nohighlight" title="">
@@ -276,7 +295,8 @@ service follows:
     // the verifiable credential repository service
     "id": "did:v1:5d6c3b20-56a9-42e1-bfc8-ed7e685c9039",
     "type": "VerifiableCredentialRepository",
-    "url": "https://wallet.veres.io/"
+    "url": "https://wallet.veres.io/",
+    "description": "Pat Doe's Digital Wallet"
   }]
 }
     </pre>
@@ -308,12 +328,12 @@ endpoints:
       <tr>
         <td>veresOneReadService</td>
         <td>GET /dids/{did}</td>
-        <td>Gets an existing DID Object.</td>
+        <td>Gets an existing DID Document.</td>
       </tr>
       <tr>
         <td>veresOneUpdateService</td>
         <td>POST /dids/{did}</td>
-        <td>Update an existing DID Object.</td>
+        <td>Update an existing DID Document.</td>
       </tr>
     </tbody>
   </table>
@@ -374,7 +394,7 @@ In the following example a JSON-compatible service description is provided
     <h2>Creating a DID</h2>
 
     <p>
-A DID is created by performing an HTTP POST of a signed DID Object
+A DID is created by performing an HTTP POST of a signed DID Document
 to the <code>veresOneCreateService</code>. The following HTTP status codes
 are defined for this service:
     </p>
@@ -389,7 +409,7 @@ are defined for this service:
           <td>201</td>
           <td>
 DID creation request was successful. The HTTP <code>Location</code> header will
-contain the URL for the newly created DID Object.
+contain the URL for the newly created DID Document.
           </td>
         </tr>
         <tr>
@@ -416,37 +436,53 @@ Accept: application/ld+json, application/json, text/plain, */*
 Accept-Encoding: gzip, deflate
 
 {
-  "@context": "https://w3id.org/veres-one/v1",
-  "id": "did:v1:215cb1dc-1f44-4695-a07f-97649cad9938",
-  "proofOfControl": [{
-    "type": "RsaSignatureProof2017",
-    "publicKey": {
-      "id": "did:v1:215cb1dc-1f44-4695-a07f-97649cad9938/keys/2",
-      "type": "RsaCryptographicKey",
-      "owner": "did:v1:215cb1dc-1f44-4695-a07f-97649cad9938",
-      "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n",
-    }
-  }],
-  "proofOfUpdateAuthorization": [{
-    "type": "RsaSignatureProof2017",
-    "publicKey": {
-      "id": "did:v1:215cb1dc-1f44-4695-a07f-97649cad9938/keys/2",
+  "@context": "https://w3id.org/webledger/v1",
+  "type": "WebLedgerEvent",
+  "operation": "Create",
+  "input": [{
+    "@context": "https://w3id.org/veres-one/v1",
+    "id": "did:v1:testnet:770f2d84-5e62-4caa-af95-111a3205bc84",
+    "authorizationCapability": [{
+      "permission": "UpdateDidDocument",
+      "entity": "did:v1:testnet:770f2d84-5e62-4caa-af95-111a3205bc84",
+      "permittedProofType": [{
+        "proofType": "LinkedDataSignature2015"
+      }, {
+        "proofType": "EquihashProof2017",
+        "equihashParameterAlgorithm": "VeresOne2017"
+      }]
+    }],
+    "authenticationCredential": [{
+      "id": "did:v1:testnet:770f2d84-5e62-4caa-af95-111a3205bc84/keys/1",
       "type": "CryptographicKey",
-      "owner": "did:v1:215cb1dc-1f44-4695-a07f-97649cad9938",
-      "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n",
-    }
+      "owner": "did:v1:testnet:770f2d84-5e62-4caa-af95-111a3205bc84",
+      "publicKeyPem": "-----BEGIN PUBLIC KEY-----\r\n
+        MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAmbDqPu6IKHiiIQ4d0AQ6\r\n
+        PBduDhUUVqyQirvxqsdcNdKgZ2L8whBml/nTyuB4cd+hHrsfMDiHiT5kX2pbZ7Yy\r\n
+        2ctWkGw8e0J94CbwVh2H15gBQBUCjLiGvVIHO2pni693qmre+3Ya2NJ8gGwPLJ7h\r\n
+        TLca2b2dX0y16qu0MT0osUGGEoPsdg6ibD2pxnADS3GNPObHT12GrAuxjYFMHecF\r\n
+        A4hLZ8U+MIcVmHZuokqqbcyJyjOV+kmhFNeTKFP5P5U8HA3Y42/rE1UJp/wyy7Lc\r\n
+        ZAvq0t75ddXKyvYh5dkzxxeeELNKNWVxJ2yvgAr0SatLEPzxJoeYdCyU5N5E22Fj\r\n
+        jQIDAQAB\r\n-----END PUBLIC KEY-----\r\n"
+    }]
   }],
-  "service": [{
-    "id": "did:v1:5d6c3b20-56a9-42e1-bfc8-ed7e685c9039",
-    "type": "VerifiableCredentialRepository",
-    "url": "https://wallet.veres.io/"
-  }],
-  "signature": {
-    "type": "LinkedDataSignature2017",
-    "created": "2017-07-25T17:29:49Z",
-    "creator": "did:v1:215cb1dc-1f44-4695-a07f-97649cad9938/keys/1",
-    "signatureValue": "oxpLJV...LHbAdaO=="
-  }
+  "signature": [{
+    "type": "EquihashProof2017",
+    "equihashParameterN": 64,
+    "equihashParameterK": 3,
+    "nonce": "AQAAAA==",
+    "proofValue": "AAAaPwABxrIAAFOKAAGo4QAAVW0AAN7cAACXcgABjEI="
+  }, {
+    "type": "LinkedDataSignature2015",
+    "created": "2017-09-30T02:54:31Z",
+    "creator": "did:v1:testnet:770f2d84-5e62-4caa-af95-111a3205bc84/keys/1",
+    "signatureValue": "SNMbsPqLnB+hJFhXzS6hcpZnm9cGvSZZg7o26UYnyGYTvKder/S+Xk
+      hNhXisS5385Ljlf5CXTQT5j6qYZtP8ut1Benaae8TMH17txP0CfzHbUMJFnHA1+Nru+e/Pw
+      yPwuQ+VZYlXOB7g/tKVVZsxAYTKCAOJvJMIE+nlHjpB+RsKs9z4ZzVtddntqqAcvbZxV/o7
+      azBFDizeJu/gHVVMncCJ00SRoOzCOZUABRJV/k68bNSAfpELkrdWx8/xvMIF8r+LWhwdKCS
+      iOw4DjSwIK40yD5rOvQn/GlC+unyB8zFe60jCToz/UOJNZBiIYwo+Pwwx28Wqd4Jkb3IeDr
+      /L2Q=="
+  }]
 }
     </pre>
 
@@ -469,10 +505,10 @@ Transfer-Encoding: chunked
   </section>
 
   <section>
-    <h2>Updating a DID Object</h2>
+    <h2>Updating a DID Document</h2>
 
     <p>
-A DID is updated by performing an HTTP POST of a signed DID Object
+A DID is updated by performing an HTTP POST of a signed DID Document
 to the <code>veresOneUpdateService</code>. The following HTTP status codes
 are defined for this service:
     </p>
@@ -500,7 +536,7 @@ DID update request was successful.
 An example exchange for a DID update request is shown below:
     </p>
 
-    <pre class="example highlight" title="DID Object update request">
+    <pre class="example highlight" title="DID Document update request">
 POST /dids/did:v1:215cb1dc-1f44-4695-a07f-97649cad9938 HTTP/1.1
 Host: example.com
 Content-Type: application/ld+json
@@ -509,45 +545,65 @@ Accept: application/ld+json, application/json, text/plain, */*
 Accept-Encoding: gzip, deflate
 
 {
-  "@context": "https://w3id.org/veres-one/v1",
-  "id": "did:v1:215cb1dc-1f44-4695-a07f-97649cad9938",
-  "proofOfControl": [{
-    "type": "RsaSignatureProof2017",
-    "publicKey": {
-      "id": "did:v1:215cb1dc-1f44-4695-a07f-97649cad9938/keys/2",
-      "type": "RsaCryptographicKey",
-      "owner": "did:v1:215cb1dc-1f44-4695-a07f-97649cad9938",
-      "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n",
-    }
-  }, {
-    "type": "RsaSignatureProof2017",
-    "publicKey": {
-      "id": "did:v1:215cb1dc-1f44-4695-a07f-97649cad9938/keys/3",
-      "type": "RsaCryptographicKey",
-      "owner": "did:v1:215cb1dc-1f44-4695-a07f-97649cad9938",
-      "publicKeyPem": "-----BEGIN PUBLIC KEY-----\r\nMIIBk3j...j2jSIk\r\n-----END PUBLIC KEY-----\r\n",
-    }
-  }],
-  "proofOfUpdateAuthorization": [{
-    "type": "RsaSignatureProof2017",
-    "publicKey": {
-      "id": "did:v1:215cb1dc-1f44-4695-a07f-97649cad9938/keys/2",
+  "@context": "https://w3id.org/webledger/v1",
+  "type": "WebLedgerEvent",
+  "operation": "Update",
+  "input": [{
+    "@context": "https://w3id.org/veres-one/v1",
+    "id": "did:v1:testnet:770f2d84-5e62-4caa-af95-111a3205bc84",
+    "authorizationCapability": [{
+      "permission": "UpdateDidDocument",
+      "entity": "did:v1:testnet:770f2d84-5e62-4caa-af95-111a3205bc84",
+      "permittedProofType": [{
+        "proofType": "LinkedDataSignature2015"
+      }, {
+        "proofType": "EquihashProof2017",
+        "equihashParameterAlgorithm": "VeresOne2017"
+      }]
+    }],
+    "authenticationCredential": [{
+      "id": "did:v1:testnet:770f2d84-5e62-4caa-af95-111a3205bc84/keys/1",
       "type": "CryptographicKey",
-      "owner": "did:v1:215cb1dc-1f44-4695-a07f-97649cad9938",
-      "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n",
-    }
+      "owner": "did:v1:testnet:770f2d84-5e62-4caa-af95-111a3205bc84",
+      "publicKeyPem": "-----BEGIN PUBLIC KEY-----\r\n
+        MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAmbDqPu6IKHiiIQ4d0AQ6\r\n
+        PBduDhUUVqyQirvxqsdcNdKgZ2L8whBml/nTyuB4cd+hHrsfMDiHiT5kX2pbZ7Yy\r\n
+        2ctWkGw8e0J94CbwVh2H15gBQBUCjLiGvVIHO2pni693qmre+3Ya2NJ8gGwPLJ7h\r\n
+        TLca2b2dX0y16qu0MT0osUGGEoPsdg6ibD2pxnADS3GNPObHT12GrAuxjYFMHecF\r\n
+        A4hLZ8U+MIcVmHZuokqqbcyJyjOV+kmhFNeTKFP5P5U8HA3Y42/rE1UJp/wyy7Lc\r\n
+        ZAvq0t75ddXKyvYh5dkzxxeeELNKNWVxJ2yvgAr0SatLEPzxJoeYdCyU5N5E22Fj\r\n
+        jQIDAQAB\r\n-----END PUBLIC KEY-----\r\n"
+    }, {
+      "id": "did:v1:testnet:770f2d84-5e62-4caa-af95-111a3205bc84/keys/2",
+      "type": "CryptographicKey",
+      "owner": "did:v1:testnet:770f2d84-5e62-4caa-af95-111a3205bc84",
+      "publicKeyPem": "-----BEGIN PUBLIC KEY-----\r\n
+        MIIBIj0BAQEFAKHiiIQ4d0AQ6ANBgkqhkiG9wAOCAQ8AMIIBCgKCAQEAmbDqPu6I\r\n
+        xqsdcNdKgZ2L8whBml/nTyuBiHiPBduDhUUVqyQirvT5kX2pbZ7Yy4cd+hHrsfMD\r\n
+        VhVIHO2pni693qmre+2ctWkGw8e0J94Cbw3Ya2NJ8gGwPLJ7hH15gBQBUCjLiGv\r\n
+        0osUNPObHT12GrAuxjYFMHecFGTLca2b2dX0y16qu0MTGEoPsdg6ibD2pxnADS3G\r\n
+        kqqbcyJyjOV+kmh8HA3Y42/rE1UJpA4hLZ8U+MIcVmHZuo/wyy7LcFNeTKFP5P5U\r\n
+        5dkzxxezxJoeYdCyU5N5E2ZAvq0t75ddXKyvYh2FjeELNKNWVxJ2yvgAr0SatLEP\r\n
+        AQABjQID\r\n-----END PUBLIC KEY-----\r\n"
+    }]
   }],
-  "service": [{
-    "id": "did:v1:5d6c3b20-56a9-42e1-bfc8-ed7e685c9039",
-    "type": "VerifiableCredentialRepository",
-    "url": "https://wallet.veres.io/"
-  }],
-  "signature": {
-    "type": "LinkedDataSignature2017",
-    "created": "2017-07-25T17:29:49Z",
-    "creator": "did:v1:215cb1dc-1f44-4695-a07f-97649cad9938/keys/1",
-    "signatureValue": "oxpLJV...LHbAdaO=="
-  }
+  "signature": [{
+    "type": "EquihashProof2017",
+    "equihashParameterN": 64,
+    "equihashParameterK": 3,
+    "nonce": "AQAAAA==",
+    "proofValue": "AAAaPwABxrIAAFOKAAGo4QAAVW0AAN7cAACXcgABjEI="
+  }, {
+    "type": "LinkedDataSignature2015",
+    "created": "2017-09-30T02:54:31Z",
+    "creator": "did:v1:testnet:770f2d84-5e62-4caa-af95-111a3205bc84/keys/2",
+    "signatureValue": "Zg7o26UYnyGYTvKdSN6hcpZnm9cGvSZB+hJFhXzSer/S+XkMbsPqLn
+      VMncCJ00SRoOzCOZUABRJV/azBFDizeJu/gHVk68bNSAfpELkrdWx8/xvMIF8r+LWhwdKCS
+      XTQT5j6qYZtP8ut1BenahNhXisS5385Ljlf5Cae8TMH17txP0CfzHbUMJFnHA1+Nru+e/Pw
+      K40yD5rOvQn/GlC+unyB8ziOw4DjSwIFe60jCToz/UOJNZBiIYwo+Pwwx28Wqd4Jkb3IeDr
+      VVZsxAYTKCAOJvJMIE+nlHjpB+RyPwuQ+VZYlXOB7g/tKsKs9z4ZzVtddntqqAcvbZxV/o7
+      /45H=="
+  }]
 }
     </pre>
 
@@ -602,74 +658,46 @@ under proofOfUpdateAuthorization.
   <h1>Appendix A: Examples</h2>
 
   <section>
-    <h2>Typical DID Object</h2>
+    <h2>Typical DID Document</h2>
 
     <p>
-  The following is a complete example of a typical Veres One DID Object:
+The following is a complete example of a typical Veres One DID Document:
     </p>
 
     <pre class="example nohighlight">
 {
   "@context": "https://w3id.org/veres-one/v1",
-  "id": "did:v1:215cb1dc-1f44-4695-a07f-97649cad9938",
-  // proof of control may be asserted by personal laptop or mobile phone
-  "proofOfControl": [{
-    "type": "RsaSignatureProof2017",
-    "publicKey": {
-      "id": "did:v1:215cb1dc-1f44-4695-a07f-97649cad9938/keys/2",
-      "type": "RsaCryptographicKey",
-      "owner": "did:v1:215cb1dc-1f44-4695-a07f-97649cad9938",
-      "publicKeyPem": "-----BEGIN PUBLIC KEY-----\r\nMIIBIjA...DAQAB\r\n-----END PUBLIC KEY-----\r\n",
-    }
-  }, {
-    "type": "RsaSignatureProof2017",
-    "publicKey": {
-      "id": "did:v1:215cb1dc-1f44-4695-a07f-97649cad9938/keys/3",
-      "type": "RsaCryptographicKey",
-      "owner": "did:v1:215cb1dc-1f44-4695-a07f-97649cad9938",
-      "publicKeyPem": "-----BEGIN PUBLIC KEY-----\r\nMIIBk3j...j2jSIk\r\n-----END PUBLIC KEY-----\r\n",
-    }
+  "id": "did:v1:testnet:eaaf4df5-471d-404e-b143-652fe38cd2c7",
+  "authorizationCapability": [{
+    "permission": "UpdateDidDocument",
+    "entity": "did:v1:testnet:eaaf4df5-471d-404e-b143-652fe38cd2c7",
+    "permittedProofType": [{
+      "proofType": "LinkedDataSignature2015"
+    }, {
+      "proofType": "EquihashProof2017",
+      "equihashParameterAlgorithm": "VeresOne2017"
+    }]
   }],
-  // proof of update authorization may be provided by digital wallet + friend OR
-  // by mobile phone
-  "proofOfUpdateAuthorization": [{
-    // update of DID Object requires 2 of 3 proofs (one wallet and one friend)
-    "type": "DidControlProof2017",
-    "minimumProofs": 2,
-    "did": [
-      "did:v1:5d6c3b20-56a9-42e1-bfc8-ed7e685c9039",
-      "did:v1:976cda70-9d9f-4eb8-9b24-9593f17d345f",
-      "did:v1:fd6f099c-2b76-4c1a-951d-ed86a5cf73fa"
-    ],
-  }, {
-    // update of DID Object requires 1 signature from known secure device (mobile phone)
-    "type": "RsaSignatureProof2017",
-    "publicKey": {
-      "id": "did:v1:215cb1dc-1f44-4695-a07f-97649cad9938/keys/2",
-      "type": "CryptographicKey",
-      "owner": "did:v1:215cb1dc-1f44-4695-a07f-97649cad9938",
-      "publicKeyPem": "-----BEGIN PUBLIC KEY-----\r\nMIIBfja...kd8Jf\r\n-----END PUBLIC KEY-----\r\n",
-    }
-  }],
-  "service": [{
-    // the verifiable credential repository service
-    "id": "did:v1:5d6c3b20-56a9-42e1-bfc8-ed7e685c9039",
-    "type": "VerifiableCredentialRepository",
-    "url": "https://wallet.veres.io/"
-  }],
-  // signature performed by at least one proof of update authorization mechanism
-  "signature": {
-    "type": "LinkedDataSignature2017",
-    "created": "2017-07-25T17:29:49Z",
-    "creator": "did:v1:215cb1dc-1f44-4695-a07f-97649cad9938/keys/1",
-    "signatureValue": "oxpLJV...LHbAdaO=="
-  }
+  "authenticationCredential": [{
+    "id": "did:v1:testnet:eaaf4df5-471d-404e-b143-652fe38cd2c7/keys/1",
+    "type": "CryptographicKey",
+    "owner": "did:v1:testnet:eaaf4df5-471d-404e-b143-652fe38cd2c7",
+    "publicKeyPem": "-----BEGIN PUBLIC KEY-----\r\n
+      MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvZXq8jX38lwndvzadCsT\r\n
+      Xa2Zafdrg9I69gzfccH6XWY3Ddi/JoMuTSB1GwxKBfXpo9gjaPYsm6wCLv9Kku4x\r\n
+      HL4LA1kmIalVTVDYgSO4sGK9k9oQNTY+hgUoTtdMxMShWrVy6+DIS/ZzIPyQBtbm\r\n
+      9D7RojrvESmjq/OuMs6sTlC0JjEE1ijuuHY+iY7gDYcR7RGFAsi4WGbCVy6c8VqL\r\n
+      29h8yGps2U+AxKr9f783VGMCk469ESHVwVyw6Jbxihn/h4TH3ZH8WTQW9rpS9GhO\r\n
+      euSAA6iSH5UcmAzJZKSzaC+oghEJwMtOcgvr1F9iSn9tuHebgy9R6tHvEChhvdgz\r\n
+      2wIDAQAB\r\n
+      -----END PUBLIC KEY-----\r\n",
+  }]
 }
     </pre>
   </section>
 
   <section>
-    <h2>Legacy DID Object</h2>
+    <h2>Legacy DID Document</h2>
 
     <p>
 The Veres One ledger was launched in 2015, predated this specification, and as
