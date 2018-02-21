@@ -316,11 +316,86 @@ operational costs.
   </section>
 
   <section>
-    <h2>Performance Characteristics</h2>
+    <h2>Performance</h2>
 
     <p>
-
+Based on the goals stated in the previous section, benchmarking has been
+performed on the reference Veres One implementation that is able to achieve
+the following performance characteristics.
     </p>
+
+    <p class="issue"
+      title="Warning: Benchmarks are not reflective of real world performance">
+Benchmarking is a poor substitute for measurements taken over long periods of
+time in hostile environments such as the public Internet. Attacks, routing
+inefficiencies, packet drops, misconfigured software, and annoying physical
+limitations such as the speed of light all contribute to degraded performance
+in real world settings. This section should be taken with a large grain of salt
+until we have dependable real world data.
+    </p>
+
+    <p class="issue"
+      title="Warning: Benchmarks are highly dependent on node configuration">
+The configuration for the benchmarks used 1 database with 7 electors
+configured. The database was an AWS AWS i3.large instance consisting
+of 2 vCPUs, 15.25GB RAM and Local NVME Storage. Each node was an AWS
+c5.large instance with 2 vCPUs and 4GB RAM.
+    </p>
+
+    <p>
+The Veres One Blockchain uses a leaderless, non-blocking,
+byzantine fault tolerant consensus algorithm called Continuity.
+The algorithm reaches consensus with probability 1 as long as there are at
+least 2f+1 nodes in the system where <em>f</em> is the number of byzantine
+failures. Since the algorithm is non-blocking and nodes can progress
+at their own pace, the limiting factor is how quickly events can be gossiped
+around the network. This approach results in very high throughputs.
+Transactions are limited by two factors: 1) the fastest 2/3rds
+of elector's database write speeds and 2) the time it takes to distribute
+12f + 1 merge events to every elector in the network, the rate of which is
+an exponential function.
+    </p>
+
+    <table class="simple">
+      <thead>
+        <tr>
+          <th>Metric</th>
+          <th>Capability</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td>
+Throughput
+          </td>
+          <td>
+~???K/sec (???M / day)
+          </td>
+          <td>
+The throughout is a function of how quickly 12f+1 events can be transmitted to
+each elector. Limiting factors include database write speed,
+communication speed, and digital signature verification speed.
+          </td>
+        </tr>
+
+        <tr>
+          <td>
+Consensus Latency
+          </td>
+          <td>
+~30 seconds
+          </td>
+          <td>
+The latency is a function of how many electors there are in the system. How
+many electors there are in the system is a function of the risk tolerance of
+the network.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
   </section>
 
 </section>
