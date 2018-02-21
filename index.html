@@ -666,31 +666,55 @@ The following is a complete example of a typical Veres One DID Document:
 
     <pre class="example nohighlight">
 {
-  "@context": "https://w3id.org/veres-one/v1",
-  "id": "did:v1:eaaf4df5-471d-404e-b143-652fe38cd2c7",
-  "authorizationCapability": [{
-    "permission": "UpdateDidDocument",
-    "entity": "did:v1:eaaf4df5-471d-404e-b143-652fe38cd2c7",
-    "permittedProofType": [{
-      "proofType": "LinkedDataSignature2015"
-    }, {
-      "proofType": "EquihashProof2017",
-      "equihashParameterAlgorithm": "VeresOne2017"
-    }]
+  "@context":"https://w3id.org/veres-one/v1",
+  "id":"did:v1:test:nym:4jWHwNdrG9-6jd9I7K1si3kTRneNwftZV9m6rkrAfWQ",
+  "authentication": [{
+    "type":"RsaSignatureAuthentication2018",
+    "publicKey": {
+      "id":"did:v1:test:nym:4jWHwNdrG9-6jd9I7K1si3kTRneNwftZV9m6rkrAfWQ#authn-key-1",
+      "type":"RsaVerificationKey2018",
+      "owner":"did:v1:test:nym:4jWHwNdrG9-6jd9I7K1si3kTRneNwftZV9m6rkrAfWQ",
+      "publicKeyPem":"-----BEGIN PUBLIC KEY-----\r\n
+        MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAv69zWOjGaVnOhvD9vGb2\r\n
+        pMev9tLmLc+ivPvkooUGj9iY76oPlX4JD1mcSaTql9kXDeY4sjElTTO4TAcJr3Vt\r\n
+        BLEKo5WhsrGNYY30mWVepAZRJ0iRgVcy73/wB7nyqD+e7Uh5V845dHohLQoFJfxr\r\n
+        DTyW0X6447YI1xuuPU5kTgfS16b/PFClS7hCWW/Ih0rCSQ8o1RD0ZwoEBptE+TeB\r\n
+        dt+c46IQY0C9z0lZyy+ukK70HXK0n+jL0hT2eASGBD/KzAdJagKjQbXTbs7IlzW0\r\n
+        17j9nMFyK8pdrmHnNsG+6Gv9sDZC9WVCKur370JqAKRZeVPNPW8Ca5ZmCR/mqjYp\r\n
+        zQIDAQAB\r\n-----END PUBLIC KEY-----\r\n"
+    }
   }],
-  "authenticationCredential": [{
-    "id": "did:v1:eaaf4df5-471d-404e-b143-652fe38cd2c7/keys/1",
-    "type": "CryptographicKey",
-    "owner": "did:v1:eaaf4df5-471d-404e-b143-652fe38cd2c7",
-    "publicKeyPem": "-----BEGIN PUBLIC KEY-----\r\n
-      MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAvZXq8jX38lwndvzadCsT\r\n
-      Xa2Zafdrg9I69gzfccH6XWY3Ddi/JoMuTSB1GwxKBfXpo9gjaPYsm6wCLv9Kku4x\r\n
-      HL4LA1kmIalVTVDYgSO4sGK9k9oQNTY+hgUoTtdMxMShWrVy6+DIS/ZzIPyQBtbm\r\n
-      9D7RojrvESmjq/OuMs6sTlC0JjEE1ijuuHY+iY7gDYcR7RGFAsi4WGbCVy6c8VqL\r\n
-      29h8yGps2U+AxKr9f783VGMCk469ESHVwVyw6Jbxihn/h4TH3ZH8WTQW9rpS9GhO\r\n
-      euSAA6iSH5UcmAzJZKSzaC+oghEJwMtOcgvr1F9iSn9tuHebgy9R6tHvEChhvdgz\r\n
-      2wIDAQAB\r\n
-      -----END PUBLIC KEY-----\r\n",
+  "grantCapability": [{
+    "type":"RsaSignatureCapabilityAuthorization2018",
+    "publicKey": {
+      "id": "did:v1:test:nym:4jWHwNdrG9-6jd9I7K1si3kTRneNwftZV9m6rkrAfWQ#ocap-grant-key-1",
+      "type": "RsaVerificationKey2018",
+      "owner": "did:v1:test:nym:4jWHwNdrG9-6jd9I7K1si3kTRneNwftZV9m6rkrAfWQ",
+      "publicKeyPem": "-----BEGIN PUBLIC KEY-----\r\n
+        MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAt1NoVOTwGly/bOAV/4mG\r\n
+        J/YgrcNOVBRdO6qJz4aX0k6jFJWKZiXlVORjJOiggM+ozhaOs2g0tmEaxKh/87wV\r\n
+        vf8snrr8Pw4vuyz1YCKtnrVWK1VzSCq37XGTbPNhbgWJA4IvqEy/sY/LAmQKczop\r\n
+        flhN0m/3WMjr/1pxjEEYijOIMomGkw97z9k7Co4f3HjgdsYCTIIpImpSDmFyqLzU\r\n
+        riSY+2mI80QzWfmOoMmdDMjcYjoB9DQv3b38QWU0nzmb5xgLo63SyuzPMI8yQ7LO\r\n
+        cSv1V+6jcVnfB7SKh3jhWZM55TXX/GNvv7FLQd/FmAiWxxtyOaMcmJY6MnQUHs/B\r\n
+        pQIDAQAB\r\n-----END PUBLIC KEY-----\r\n"
+    }
+  }],
+  "invokeCapability": [{
+    "type":"RsaSignatureCapabilityAuthorization2018",
+    "publicKey":{
+      "id":"did:v1:test:nym:4jWHwNdrG9-6jd9I7K1si3kTRneNwftZV9m6rkrAfWQ#ocap-invoke-key-1",
+      "type":"RsaVerificationKey2018",
+      "owner":"did:v1:test:nym:4jWHwNdrG9-6jd9I7K1si3kTRneNwftZV9m6rkrAfWQ",
+      "publicKeyPem":"-----BEGIN PUBLIC KEY-----\r\n
+        MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAyLDpcQeA5XPqoTkVc70H\r\n
+        DCd1IWysF1k8fNs5SWAM6hS5lsyJayWGbIOwzRWaosgKhpHzvH5Uwai5/Q0kJhmI\r\n
+        WF/Qoh71wzMYwlmdO7hvBpHGMqhLcD3ysnntsAjqRXxja/f4KSW+sDsUuJWyN+Dr\r\n
+        BrfYFSP60IfRGyc9+JAaOz1oEXV45AK/w0xVUOzEjC2Lg0R5BY+Jace+t7RFJmnD\r\n
+        h9c+18AzLhIwXTDjojXsT1km3a8yVyjFMddGvUashAhAwPr3/Ztl//WnxwUojzFK\r\n
+        9XL5estUDoCg31q7khZ9j3B6UgYP1mwfIeQmWWBt++lUtYRaKNjtVdRbIcNOYb4I\r\n
+        MwIDAQAB\r\n-----END PUBLIC KEY-----\r\n"
+    }
   }]
 }
     </pre>
@@ -711,26 +735,21 @@ typical format for these objects are shown below:
   "id": "did:8743453f-e45e-4ac6-b85f-4513ba4c1460",
   "idp": "did:d1d1d1d1-d1d1-d1d1-d1d1-d1d1d1d1d1d1",
   "accessControl": {
-    "writePermission": [
-      {
+    "writePermission": [{
         "id": "did:8743453f-e45e-4ac6-b85f-4513ba4c1460/keys/1",
         "type": "CryptographicKey"
-      },
-      {
+    }, {
         "id": "did:d1d1d1d1-d1d1-d1d1-d1d1-d1d1d1d1d1d1",
         "type": "Identity"
-      }
-    ]
+    }]
   },
-  "publicKey": [
-    {
-      "id": "did:8743453f-e45e-4ac6-b85f-4513ba4c1460/keys/1",
-      "type": "CryptographicKey",
-      "owner": "did:8743453f-e45e-4ac6-b85f-4513ba4c1460",
-      "publicKeyPem": "-----BEGIN PUBLIC KEY-----\r\nMIIBIjA...DAQAB\r\n-----END PUBLIC KEY-----\r\n",
-      "@context": "https://w3id.org/identity/v1"
-    }
-  ],
+  "publicKey": [{
+    "id": "did:8743453f-e45e-4ac6-b85f-4513ba4c1460/keys/1",
+    "type": "CryptographicKey",
+    "owner": "did:8743453f-e45e-4ac6-b85f-4513ba4c1460",
+    "publicKeyPem": "-----BEGIN PUBLIC KEY-----\r\nMIIBIjA...DAQAB\r\n-----END PUBLIC KEY-----\r\n",
+    "@context": "https://w3id.org/identity/v1"
+  }],
   "signature": {
     "type": "LinkedDataSignature2015",
     "created": "2017-07-25T17:29:49Z",
