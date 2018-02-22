@@ -407,6 +407,92 @@ the network.
 
   </section>
 
+  <section>
+    <h2>How to Read This Document</h2>
+
+    <section id="conformance">
+      <!-- boilerplate will be added here -->
+      <p>
+There are two conformance classes described in this specification. The first
+are clients that use the HTTP API to perform <a>operations</a>. The second
+are Veres One Nodes, which expose the HTTP API to clients. Clients and
+Veres One Nodes MUST implement all mandatory features as listed by this
+specification and SHOULD implement optional features.
+      </p>
+    </section>
+  </section>
+
+</section>
+
+
+<section class="normative">
+  <h2>Terminology</h2>
+
+  <dl class="termlist">
+    <dt><dfn data-lt="blocks">block</dfn></dt>
+    <dd>
+A data structure that contains one or more <a>ledger</a> <a>events</a>.
+    </dd>
+    <dt><dfn data-lt="blockchain|blockchains">blockchain</dfn></dt>
+    <dd>
+A <a>ledger</a> containing a series of <a>blocks</a> where the ordering of
+the blocks can be mathematically proven to be correct.
+    </dd>
+    <dt><dfn data-lt="consensus algorithm|consensus algorithms">consensus algorithm</dfn></dt>
+    <dd>
+An algorithm that enables multiple nodes in a network to make a decision
+in a deterministic fashion.
+    </dd>
+    <dt><dfn data-lt="cryptographic ledger|cryptographic ledgers|ledger">cryptographic ledger</dfn></dt>
+    <dd>
+A method of recording changes in a <a>state machine</a> where the
+accuracy of the ledger can be mathematically proven to be correct.
+    </dd>
+    <dt><dfn data-lt="decentralized system|decentralized systems">decentralized system</dfn></dt>
+    <dd>
+A system in which lower level components operate on local information to
+accomplish global goals. For example, an ant colony is a decentralized system
+as there is no central control determining when food must be collected or
+how new tunnels should be excavated.
+    </dd>
+    <dt><dfn data-lt="decentralized ledger|decentralized ledgers">decentralized ledger</dfn></dt>
+    <dd>
+A <a>cryptographic ledger</a> that uses a <a>consensus algorithm</a> that
+enables a network of <a>ledger nodes</a> to come to consensus in a
+decentralized yet deterministic fashion.
+    </dd>
+    <dt><dfn data-lt="event|events">event</dfn></dt>
+    <dd>
+Any data recorded in a <a>ledger</a> that changes the
+<a>state machine</a>. Events typically contain <a>operations</a>.
+    </dd>
+    <dt><dfn data-lt="ledger agent|ledger agents">ledger agent</dfn></dt>
+    <dd>
+A software program that instructs a <a>ledger node</a> to perform specific
+actions such as reading or writing data.
+    </dd>
+    <dt><dfn data-lt="ledger node|ledger nodes">ledger node</dfn></dt>
+    <dd>
+A software program that reads and writes from particular instance of
+a <a>ledger</a> by executing algorithms according to the rules of the ledger.
+The ledger node may be instructed to perform actions on the ledger by a
+<a>ledger agent</a>.
+    </dd>
+    <dt><dfn data-lt="operations">operation</dfn></dt>
+    <dd>
+An instruction to a <a>ledger agent</a> to modify the <a>state machine</a>
+in a particular way.
+    </dd>
+    <dt><dfn data-lt="state machine|state machines">state machine</dfn></dt>
+    <dd>
+A system that when given a particular input changes from one internal state
+to another internal state. For example, a computer system that operates a
+light bulb starts with the light state set to off. When an input to turn
+the light on is given, the internal computer system state sets the light
+state to on, thus illuminating the light bulb.
+    </dd>
+  </dl>
+
 </section>
 
 <section>
