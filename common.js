@@ -27,26 +27,65 @@ var ccg = {
       status: "FPWD",
       publisher: "Verifiable Claims Working Group"
     },
+    "LD-SIGNATURES": {
+      title: "Linked Data Signatures 1.0",
+      href: "https://w3c-dvcg.github.io/ld-signatures/",
+      authors: [
+      	"Dave Longley",
+        "Manu Sporny",
+        "Shane McCarron",
+        "Christopher Allen"
+      ],
+      status: "CGDRAFT",
+      publisher: "Digital Verification Community Group"
+    },
+    "LD-PROOFS": {
+      title: "Linked Data Signatures 1.0",
+      href: "https://w3c-dvcg.github.io/ld-proofs/",
+      authors: [
+      	"Dave Longley",
+        "Manu Sporny"
+      ],
+      status: "CGDRAFT",
+      publisher: "Digital Verification Community Group"
+    },
+    "LDS-RSA2018": {
+      title: "RSA Signature Suite 2018",
+      href: "https://w3c-dvcg.github.io/lds-rsa2018/",
+      authors: [
+      	"Dave Longley",
+        "Manu Sporny"
+      ],
+      status: "CGDRAFT",
+      publisher: "Digital Verification Community Group"
+    },
+    "WEB-LEDGER": {
+      title: "Web Ledger 1.0",
+      href: "https://w3c.github.io/web-ledger/",
+      authors: [
+        "Manu Sporny",
+      	"Dave Longley"
+      ],
+      status: "CGDRAFT",
+      publisher: "Credentials Community Group"
+    },
+    "DID": {
+      title: "Decentralized Identifiers 1.0",
+      href: "https://w3c.github.io/web-ledger/",
+      authors: [
+        "Drummond Reed",
+      	"Manu Sporny",
+      	"Dave Longley",
+      	"Christopher Allen",
+      	"Ryan  Grant",
+      	"Markus Sabadello"
+      ],
+      status: "CGDRAFT",
+      publisher: "Credentials Community Group"
+    },
     // aliases to known references
     "HTTP-SIGNATURES": {
       aliasOf: "http-signatures"
-    },
-    "MACAROONS": {
-      title: 'Macaroons',
-      // TODO: create spec
-      href: 'http://macaroons.io/',
-      authors: ['Arnar Birgisson', 'Joe Gibbs Politz', 'Úlfar Erlingsson',
-        'Ankur Taly', 'Michael Vrable', 'Mark Lentczner'],
-      status: 'unofficial',
-      publisher: 'Credentials Community Group'
-    },
-    'OPEN-BADGES': {
-      title: 'Open Badges',
-      href: 'https://github.com/openbadges/openbadges-specification',
-      authors: ['Brian Brennan', 'Mike Larsson', 'Chris McAvoy',
-        'Nate Otto', 'Kerri Lemoie'],
-      status:   'BA-DRAFT',
-      publisher:  'Badge Alliance Standard Working Group'
     },
     'RDF-NORMALIZATION': {
       title: 'RDF Dataset Normalization',
@@ -57,8 +96,6 @@ var ccg = {
     },
   }
 };
-
-
 
 // We should be able to remove terms that are not actually
 // referenced from the common definitions
