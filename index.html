@@ -580,10 +580,11 @@ the UUID format if UUID-based Veres One DIDs are used.
     </p>
 
     <pre class="nohighlight">
-      v1did        = "did:v1:" v1class ": " v1identifier  [ ";" did-service ]
-                       [ "/" did-path ] [ "?" did-query ] [ "#" did-fragment ]
-      v1class      = ( "nym" / "uuid" )
-      v1identifier = %x41-5A / %x61-7A / %x5F / %2D
+      v1-did        = "did:v1:" v1-did-type ": " v1-identifier
+                       [ ";" did-service ] [ "/" did-path ]
+                       [ "?" did-query ] [ "#" did-fragment ]
+      v1-did-type   = ( "nym" / "uuid" )
+      v1-identifier = %x41-5A / %x61-7A / %x5F / %2D
     </pre>
 
     <p>
