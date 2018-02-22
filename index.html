@@ -89,6 +89,9 @@ pre .comment {
   font-weight: bold;
   color: Gray;
 }
+.sequence-diagram {
+  margin: auto;
+}
     </style>
   </head>
   <body>
@@ -412,7 +415,31 @@ the network.
   <p>
 The Veres One Data model is a graph-based data model that is semantically
 rigorous. The syntax used for the data model is JSON-LD, which is based on
-18+ years of Linked Data standardization work at the W3C. The
+18+ years of Linked Data standardization work at the W3C. The data model also
+builds upon the <a href="https://w3c.github.io/web-ledger/">Web Ledger</a>
+specification as well as the Linked Data Proofs and
+<a href="https://w3c-dvcg.github.io/ld-signatures/">Linked Data Signatures</a>
+specifications.
+  </p>
+
+  <figure>
+    <img src="diagrams/data-model.svg" style="max-width: 50%;"/>
+    <figcaption>
+The Veres One data model
+    </figcaption>
+  </figure>
+
+  <p>
+The core data model is fairly simple and consists of a Ledger. The Ledger
+contains Blocks. The Blocks contain Operations. The Operations contain
+instructions that modify the state of the ledger. For example, there are
+Operations to create a DID Document and update a DID Document.
+  </p>
+
+  <p>
+The data model also consists of a state machine that is modified as
+Operations execute. The state machine can be queried using Veres One DIDs,
+which will return the current DID Document associated with the Veres One DID.
   </p>
 
 </section>
