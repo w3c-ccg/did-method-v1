@@ -503,9 +503,9 @@ is associated with a DID.
 
     <pre class="example nohighlight" title="Expressing authentication credentials">
 {
-  "@context": "https://w3id.org/veres-one/v1",
-  "id": "did:v1:215cb1dc-1f44-4695-a07f-97649cad9938",
-  <span class="highlight">"authenticationCredential": [... array of acceptable authentication credentials ...]</span>
+  "@context":"https://w3id.org/veres-one/v1",
+  "id":"did:v1:nym:4jWHwNdrG9-6jd9I7K1si3kTRneNwftZV9m6rkrAfWQ",
+  <span class="highlight">"authentication": [... array of acceptable authentication suites ...]</span>
 }
     </pre>
 
@@ -513,21 +513,26 @@ is associated with a DID.
 A detailed example of a valid set of authentication credentials follows:
     </p>
 
-    <pre class="example nohighlight" title="Detailed example of authentication credentials entry">
-{
-  "@context": "https://w3id.org/veres-one/v1",
-  "id": "did:v1:215cb1dc-1f44-4695-a07f-97649cad9938",
-  "authenticationCredential": [{
-    "type": "RsaSignature2017",
+    <pre class="example nohighlight" title="Detailed example of authentication credentials entry">{
+  "@context":"https://w3id.org/veres-one/v1",
+  "id":"did:v1:nym:4jWHwNdrG9-6jd9I7K1si3kTRneNwftZV9m6rkrAfWQ",
+  "authentication": [{
+    "type":"RsaSignatureAuthentication2018",
     "publicKey": {
-      "id": "did:v1:215cb1dc-1f44-4695-a07f-97649cad9938/keys/2",
-      "type": "CryptographicKey",
-      "owner": "did:v1:215cb1dc-1f44-4695-a07f-97649cad9938",
-      "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n",
+      "id":"did:v1:nym:4jWHwNdrG9-6jd9I7K1si3kTRneNwftZV9m6rkrAfWQ#authn-key-1",
+      "type":"RsaVerificationKey2018",
+      "owner":"did:v1:nym:4jWHwNdrG9-6jd9I7K1si3kTRneNwftZV9m6rkrAfWQ",
+      "publicKeyPem":"-----BEGIN PUBLIC KEY-----\r\n
+        MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAv69zWOjGaVnOhvD9vGb2\r\n
+        pMev9tLmLc+ivPvkooUGj9iY76oPlX4JD1mcSaTql9kXDeY4sjElTTO4TAcJr3Vt\r\n
+        BLEKo5WhsrGNYY30mWVepAZRJ0iRgVcy73/wB7nyqD+e7Uh5V845dHohLQoFJfxr\r\n
+        DTyW0X6447YI1xuuPU5kTgfS16b/PFClS7hCWW/Ih0rCSQ8o1RD0ZwoEBptE+TeB\r\n
+        dt+c46IQY0C9z0lZyy+ukK70HXK0n+jL0hT2eASGBD/KzAdJagKjQbXTbs7IlzW0\r\n
+        17j9nMFyK8pdrmHnNsG+6Gv9sDZC9WVCKur370JqAKRZeVPNPW8Ca5ZmCR/mqjYp\r\n
+        zQIDAQAB\r\n-----END PUBLIC KEY-----\r\n"
     }
-  }]
-}
-    </pre>
+  }],
+  ...</pre>
 
   </section>
 
@@ -535,15 +540,31 @@ A detailed example of a valid set of authentication credentials follows:
     <h2>Authorization</h2>
 
     <p>
-Authorization is the process the ledger uses to determine what an entity
-may to do the DID Document.
+The Veres One Ledger uses
+<a href="https://w3c-ccg.github.io/ld-ocap/">Linked Data Object
+Capabilities</a> to authorize operations to be performed on DID Documents.
     </p>
 
-    <pre class="example nohighlight" title="">
-{
-  "@context": "https://w3id.org/veres-one/v1",
-  "id": "did:v1:215cb1dc-1f44-4695-a07f-97649cad9938",
-  <span class="highlight">"authorizationCapability": [... array of capability descriptions ...]</span>
+    <p>
+Granting a capability is equivalent to giving someone your car keys. Your
+car doesn't know who the person is with the key, it just knows that when the
+key is turned in the ignition, the car should start.
+The benefit of object capabilities is that, unlike a car key, you can set
+arbitrary restrictions on the usage of a capability. For example, setting
+an expiration time for the capability, or a geofenced zone in which it can
+be used.
+    </p>
+
+    <p>
+The Veres One data model supports two types of capability suites, one for
+granting capabilities and the other for invoking capabilities.
+    </p>
+
+    <pre class="example nohighlight" title="">{
+  "@context":"https://w3id.org/veres-one/v1",
+  "id":"did:v1:nym:4jWHwNdrG9-6jd9I7K1si3kTRneNwftZV9m6rkrAfWQ",
+  <span class="highlight">"grantCapability": [... array of capability grant suites  ...]</span>
+  <span class="highlight">"invokeCapability": [... array of capability invocation suites ...]</span>
 }
     </pre>
 
@@ -554,84 +575,40 @@ follows:
 
     <pre class="example nohighlight" title="">
 {
-  "@context": "https://w3id.org/veres-one/v1",
-  "id": "did:v1:215cb1dc-1f44-4695-a07f-97649cad9938",
-  // proof of update authorization may be provided by digital wallet + friend OR
-  // by mobile phone
-  "authorizationCapability": [{
-    // this entity may update any field in this DID Document using any
-    // authentication mechanism understood by the ledger
-    "permission": "UpdateDidDocument",
-    "entity": "did:v1:215cb1dc-1f44-4695-a07f-97649cad9938"
-  }, {
-    // this entity may update the authenticationCredential field in this
-    // DID Document as long as they authenticate with RsaSignature2017
-    "entity": "did:v1:b5f8c320-f7ca-4869-85e6-a1bcbf825b2a",
-    "permission": "UpdateDidDocument",
-    "field": ["authenticationCredential"],
-    "permittedProofType": [{
-      "proofType": "RsaSignature2017"
-    }]
-  }, {
-    // anyone may update the authenticationCredential and writeAuthorization
-    // fields as long as they provide a specific multi-signature proof
-    "permission": "UpdateDidDocument",
-    "field": ["authenticationCredential", "authorizationCapability"],
-    "permittedProofType": [{
-      "proofType": "RsaSignature2017",
-      "minimumSignatures": 3,
-      "authenticationCredential": [{
-        "id": "did:v1:304ebc3e-7997-4bf4-a915-dd87e8455941/keys/123",
-        "type": "RsaCryptographicKey",
-        "owner": "did:v1:304ebc3e-7997-4bf4-a915-dd87e8455941",
-        "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
-      }, {
-        "id": "did:v1:0f22346a-a360-4f3e-9b42-3366e348e941/keys/foo",
-        "type": "RsaCryptographicKey",
-        "owner": "did:v1:0f22346a-a360-4f3e-9b42-3366e348e941",
-        "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
-      }, {
-        "id": "did:v1:a8d00377-e9f1-44df-a1b9-55072e13262a/keys/abc",
-        "type": "RsaCryptographicKey",
-        "owner": "did:v1:a8d00377-e9f1-44df-a1b9-55072e13262a",
-        "publicKeyPem": "-----BEGIN PUBLIC KEY...END PUBLIC KEY-----\r\n"
-      }]
-    }]
-}
-    </pre>
-
-  </section>
-
-  <section>
-    <h2>Service Descriptions</h2>
-
-
-    <p>
-Services may be listed by including them at the top-level of the DID Document.
-    </p>
-
-    <pre class="example nohighlight" title="Simple example of a service description">
-{
-  "@context": "https://w3id.org/veres-one/v1",
-  "id": "did:v1:215cb1dc-1f44-4695-a07f-97649cad9938",
-   <span class="highlight">"credentialRepositoryService": "https://wallet.veres.io/"</span>
-}
-    </pre>
-
-    <p>
-A detailed example of the expression of a service description follows:
-    </p>
-
-    <pre class="example nohighlight" title="">
-{
-  "@context": "https://w3id.org/veres-one/v1",
-  "id": "did:v1:215cb1dc-1f44-4695-a07f-97649cad9938",
-  "credentialRepositoryService": [{
-    // the verifiable credential repository service
-    "id": "did:v1:5d6c3b20-56a9-42e1-bfc8-ed7e685c9039",
-    "type": "VerifiableCredentialRepository",
-    "url": "https://wallet.veres.io/",
-    "description": "Pat Doe's Digital Wallet"
+  "@context":"https://w3id.org/veres-one/v1",
+  "id":"did:v1:nym:4jWHwNdrG9-6jd9I7K1si3kTRneNwftZV9m6rkrAfWQ",
+  ...
+  "grantCapability": [{
+    "type":"RsaSignatureCapabilityAuthorization2018",
+    "publicKey": {
+      "id": "did:v1:nym:4jWHwNdrG9-6jd9I7K1si3kTRneNwftZV9m6rkrAfWQ#ocap-grant-key-1",
+      "type": "RsaVerificationKey2018",
+      "owner": "did:v1:nym:4jWHwNdrG9-6jd9I7K1si3kTRneNwftZV9m6rkrAfWQ",
+      "publicKeyPem": "-----BEGIN PUBLIC KEY-----\r\n
+        MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAt1NoVOTwGly/bOAV/4mG\r\n
+        J/YgrcNOVBRdO6qJz4aX0k6jFJWKZiXlVORjJOiggM+ozhaOs2g0tmEaxKh/87wV\r\n
+        vf8snrr8Pw4vuyz1YCKtnrVWK1VzSCq37XGTbPNhbgWJA4IvqEy/sY/LAmQKczop\r\n
+        flhN0m/3WMjr/1pxjEEYijOIMomGkw97z9k7Co4f3HjgdsYCTIIpImpSDmFyqLzU\r\n
+        riSY+2mI80QzWfmOoMmdDMjcYjoB9DQv3b38QWU0nzmb5xgLo63SyuzPMI8yQ7LO\r\n
+        cSv1V+6jcVnfB7SKh3jhWZM55TXX/GNvv7FLQd/FmAiWxxtyOaMcmJY6MnQUHs/B\r\n
+        pQIDAQAB\r\n-----END PUBLIC KEY-----\r\n"
+    }
+  }],
+  "invokeCapability": [{
+    "type":"RsaSignatureCapabilityAuthorization2018",
+    "publicKey":{
+      "id":"did:v1:nym:4jWHwNdrG9-6jd9I7K1si3kTRneNwftZV9m6rkrAfWQ#ocap-invoke-key-1",
+      "type":"RsaVerificationKey2018",
+      "owner":"did:v1:nym:4jWHwNdrG9-6jd9I7K1si3kTRneNwftZV9m6rkrAfWQ",
+      "publicKeyPem":"-----BEGIN PUBLIC KEY-----\r\n
+        MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAyLDpcQeA5XPqoTkVc70H\r\n
+        DCd1IWysF1k8fNs5SWAM6hS5lsyJayWGbIOwzRWaosgKhpHzvH5Uwai5/Q0kJhmI\r\n
+        WF/Qoh71wzMYwlmdO7hvBpHGMqhLcD3ysnntsAjqRXxja/f4KSW+sDsUuJWyN+Dr\r\n
+        BrfYFSP60IfRGyc9+JAaOz1oEXV45AK/w0xVUOzEjC2Lg0R5BY+Jace+t7RFJmnD\r\n
+        h9c+18AzLhIwXTDjojXsT1km3a8yVyjFMddGvUashAhAwPr3/Ztl//WnxwUojzFK\r\n
+        9XL5estUDoCg31q7khZ9j3B6UgYP1mwfIeQmWWBt++lUtYRaKNjtVdRbIcNOYb4I\r\n
+        MwIDAQAB\r\n-----END PUBLIC KEY-----\r\n"
+    }
   }]
 }
     </pre>
@@ -1002,13 +979,13 @@ The following is a complete example of a typical Veres One DID Document:
     <pre class="example nohighlight">
 {
   "@context":"https://w3id.org/veres-one/v1",
-  "id":"did:v1:test:nym:4jWHwNdrG9-6jd9I7K1si3kTRneNwftZV9m6rkrAfWQ",
+  "id":"did:v1:nym:4jWHwNdrG9-6jd9I7K1si3kTRneNwftZV9m6rkrAfWQ",
   "authentication": [{
     "type":"RsaSignatureAuthentication2018",
     "publicKey": {
-      "id":"did:v1:test:nym:4jWHwNdrG9-6jd9I7K1si3kTRneNwftZV9m6rkrAfWQ#authn-key-1",
+      "id":"did:v1:nym:4jWHwNdrG9-6jd9I7K1si3kTRneNwftZV9m6rkrAfWQ#authn-key-1",
       "type":"RsaVerificationKey2018",
-      "owner":"did:v1:test:nym:4jWHwNdrG9-6jd9I7K1si3kTRneNwftZV9m6rkrAfWQ",
+      "owner":"did:v1:nym:4jWHwNdrG9-6jd9I7K1si3kTRneNwftZV9m6rkrAfWQ",
       "publicKeyPem":"-----BEGIN PUBLIC KEY-----\r\n
         MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAv69zWOjGaVnOhvD9vGb2\r\n
         pMev9tLmLc+ivPvkooUGj9iY76oPlX4JD1mcSaTql9kXDeY4sjElTTO4TAcJr3Vt\r\n
@@ -1022,9 +999,9 @@ The following is a complete example of a typical Veres One DID Document:
   "grantCapability": [{
     "type":"RsaSignatureCapabilityAuthorization2018",
     "publicKey": {
-      "id": "did:v1:test:nym:4jWHwNdrG9-6jd9I7K1si3kTRneNwftZV9m6rkrAfWQ#ocap-grant-key-1",
+      "id": "did:v1:nym:4jWHwNdrG9-6jd9I7K1si3kTRneNwftZV9m6rkrAfWQ#ocap-grant-key-1",
       "type": "RsaVerificationKey2018",
-      "owner": "did:v1:test:nym:4jWHwNdrG9-6jd9I7K1si3kTRneNwftZV9m6rkrAfWQ",
+      "owner": "did:v1:nym:4jWHwNdrG9-6jd9I7K1si3kTRneNwftZV9m6rkrAfWQ",
       "publicKeyPem": "-----BEGIN PUBLIC KEY-----\r\n
         MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAt1NoVOTwGly/bOAV/4mG\r\n
         J/YgrcNOVBRdO6qJz4aX0k6jFJWKZiXlVORjJOiggM+ozhaOs2g0tmEaxKh/87wV\r\n
@@ -1038,9 +1015,9 @@ The following is a complete example of a typical Veres One DID Document:
   "invokeCapability": [{
     "type":"RsaSignatureCapabilityAuthorization2018",
     "publicKey":{
-      "id":"did:v1:test:nym:4jWHwNdrG9-6jd9I7K1si3kTRneNwftZV9m6rkrAfWQ#ocap-invoke-key-1",
+      "id":"did:v1:nym:4jWHwNdrG9-6jd9I7K1si3kTRneNwftZV9m6rkrAfWQ#ocap-invoke-key-1",
       "type":"RsaVerificationKey2018",
-      "owner":"did:v1:test:nym:4jWHwNdrG9-6jd9I7K1si3kTRneNwftZV9m6rkrAfWQ",
+      "owner":"did:v1:nym:4jWHwNdrG9-6jd9I7K1si3kTRneNwftZV9m6rkrAfWQ",
       "publicKeyPem":"-----BEGIN PUBLIC KEY-----\r\n
         MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAyLDpcQeA5XPqoTkVc70H\r\n
         DCd1IWysF1k8fNs5SWAM6hS5lsyJayWGbIOwzRWaosgKhpHzvH5Uwai5/Q0kJhmI\r\n
