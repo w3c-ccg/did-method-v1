@@ -166,7 +166,7 @@ function restrictReferences(utils, content) {
 // class 'termlist', and if the target of that reference is
 // also within a 'dl' element of class 'termlist', then
 // consider it an internal reference and ignore it.
-/*
+
 require(["core/pubsubhub"], function(respecEvents) {
     "use strict";
     respecEvents.sub('end', function(message) {
@@ -242,4 +242,3 @@ require(["core/pubsubhub"], function(respecEvents) {
         }
     });
 });
-*/
