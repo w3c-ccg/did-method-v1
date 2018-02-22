@@ -133,6 +133,12 @@ Web of Trust group facilitated by Christopher Allen, Shannon Appelcline,
 Kiara Robles, Kaliya Young, Brian Weller, and Betty Dhamers.
   </p>
 
+  <p>
+Work on this specification has also been supported by the Internet Identity
+Workshop co-founded by Phil Windley, Kaliya Young, and Doc Searls and
+energized by true believers in the user-centric identity movement.
+  </p>
+
 </section>
 
 <section>
@@ -374,7 +380,7 @@ Throughput
 ~???K/sec (???M / day)
           </td>
           <td>
-The throughout is a function of how quickly 12f+1 events can be transmitted to
+The throughput is a function of how quickly 12f+1 events can be transmitted to
 each elector. Limiting factors include database write speed,
 communication speed, and digital signature verification speed.
           </td>
@@ -403,15 +409,62 @@ the network.
 <section>
   <h1>Core Data Model</h1>
 
-  <p class="issue">
-TBD: This section will describe the use of the Web Ledger, JSON-LD, and the
-DID spec to build the Veres One Blockchain.
+  <p>
+The Veres One Data model is a graph-based data model that is semantically
+rigorous. The syntax used for the data model is JSON-LD, which is based on
+18+ years of Linked Data standardization work at the W3C. The
   </p>
 
 </section>
 
 <section>
   <h1>Basic Concepts</h1>
+
+  <section>
+    <h2>Veres One DID Format</h2>
+
+    <p>
+Veres One DIDs have the following format:
+    </p>
+
+    <p class="issue" title="ABNF needs to be more restrictive">
+The ABNF below needs to be tightened up. For example, it should enforce
+the UUID format if UUID-based Veres One DIDs are used.
+    </p>
+
+    <pre class="nohighlight">
+      v1did        = "did:v1:" v1class ":" v1identifier  [ ";" did-service ]
+                       [ "/" did-path ] [ "?" did-query ] [ "#" did-fragment ]
+      v1class      = ( "nym" / "uuid" )
+      v1identifier = %x41-5A / %x61-7A / %x5F / %2D
+    </pre>
+
+    <p>
+There are two primary classes of DID-based identifiers in Veres One. The first
+type of identifier is called a cryptonym-based identifier. This identifier
+is a SHA-256 hash of a public key. Cryptonym-based identifiers are not required
+to be registered on the ledger and may be used as unregistered pseudonymous
+pairwise identifiers. These identifiers may also be registered on the
+ledger and MUST contain a <code>authentication</code> key with a public key
+fingerprint equal to the value of the cryptonym-based identifier.
+    </p>
+
+    <pre class="example nohighlight" title="A valid Veres One Cryptonym-based Decentralized Identifier">
+      did:v1:nym:4jWHwNdrG9-6jd9I7K1si3kTRneNwftZV9m6rkrAfWQ
+    </pre>
+
+    <p>
+The second type of identifier on Veres One is a UUID-based identifier and
+may be used by entities that want to store metadata on the ledger. These sorts
+of identifiers are often used, but not limited to, storing and refering to
+Capabilities and Revocation lists.
+    </p>
+
+    <pre class="example nohighlight" title="A valid Veres One UUID-based Decentralized Identifier">
+      did:v1:uuid:804c6ac3-ce3b-46ce-b134-17175d5bee74
+    </pre>
+
+  </section>
 
   <section>
     <h2>Authentication</h2>
