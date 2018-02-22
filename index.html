@@ -58,6 +58,8 @@
           { name: "Manu Sporny", url: "http://manu.sporny.org/",
             company: "Digital Bazaar", companyURL: "https://digitalbazaar.com/" },
           { name: "Dave Longley", url: "https://github.com/dlongley",
+            company: "Digital Bazaar", companyURL: "https://digitalbazaar.com/"},
+          { name: "Chris Webber", url: "https://dustycloud.org/",
             company: "Digital Bazaar", companyURL: "https://digitalbazaar.com/"}
         ],
 
@@ -133,7 +135,7 @@ Government and no official endorsement should be inferred.
   <p>
 Work on this specification has also been supported by the Rebooting the
 Web of Trust group facilitated by Christopher Allen, Shannon Appelcline,
-Kiara Robles, Kaliya Young, Brian Weller, and Betty Dhamers.
+Kiara Robles, Kaliya Young, Brian Weller, Betty Dhamers, and Joe Andrieu.
   </p>
 
   <p>
@@ -408,7 +410,39 @@ the network.
   </section>
 
   <section>
-    <h2>How to Read This Document</h2>
+    <h3>Document Organization</h3>
+
+    <p>
+This document is organized as follows:
+    </p>
+
+    <ul>
+        <li>
+<a href="#introduction">Section 1: Introduction</a> provides a basic
+introduction to the Veres One DID Method.
+      </li>
+        <li>
+<a href="#terminology">Section 2: Terminology</a> defines basic terminology
+used throughout this document.
+      </li>
+      <li>
+<a href="#data-model">Section 3: The Data Model</a> describes the basic data
+model used for the <a>ledger</a>.
+      </li>
+      <li>
+<a href="#basic-concepts">Section 4: Basic Concepts</a> describes the
+Veres One DID format, and how authentication and authorization is performed
+using Veres One DIDs.
+      </li>
+      <li>
+<a href="#syntax">Section 5: Operations</a> describes HTTP API discovery and
+how to execute operations on the ledger.
+      </li>
+      <li>
+<a href="#examples">Appendix A: Examples</a> provides complete examples that
+may be useful to developers.
+      </li>
+    </ul>
 
     <section id="conformance">
       <!-- boilerplate will be added here -->
@@ -499,13 +533,13 @@ state to on, thus illuminating the light bulb.
   <h1>Core Data Model</h1>
 
   <p>
-The Veres One Data model is a graph-based data model that is semantically
-rigorous. The syntax used for the data model is [[!JSON-LD]], which is based on
-18+ years of Linked Data standardization work at the W3C. The ledger portions
-of the data model build upon the [[!WEB-LEDGER]] specification. The digital
-signatures and proofs data models build upon the, [[!LD-PROOFS]] and
-[[!LD-SIGNATURES]] specifications. The Decentralized Identifiers portion of the
-data model builds upon the [[!DID]] specification.
+The Veres One Data model is a graph-based data model. The syntax used for the
+data model is [[!JSON-LD]], which is based on 18+ years of Linked Data
+standardization work at the W3C. The ledger portions of the data model build
+upon the [[!WEB-LEDGER]] specification. The digital signatures and proofs data
+models build upon the, [[!LD-PROOFS]] and [[!LD-SIGNATURES]] specifications.
+The Decentralized Identifiers portion of the data model builds upon
+the [[!DID]] specification.
   </p>
 
   <figure>
