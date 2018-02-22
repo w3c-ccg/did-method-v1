@@ -460,7 +460,7 @@ the UUID format if UUID-based Veres One DIDs are used.
     </p>
 
     <pre class="nohighlight">
-      v1did        = "did:v1:" v1class ":" v1identifier  [ ";" did-service ]
+      v1did        = "did:v1:" v1class ": " v1identifier  [ ";" did-service ]
                        [ "/" did-path ] [ "?" did-query ] [ "#" did-fragment ]
       v1class      = ( "nym" / "uuid" )
       v1identifier = %x41-5A / %x61-7A / %x5F / %2D
@@ -503,8 +503,8 @@ is associated with a DID.
 
     <pre class="example nohighlight" title="Expressing authentication credentials">
 {
-  "@context":"https://w3id.org/veres-one/v1",
-  "id":"did:v1:nym:4jWHwNdrG9-6jd9I7K1si3kTRneNwftZV9m6rkrAfWQ",
+  "@context": "https://w3id.org/veres-one/v1",
+  "id": "did:v1:nym:4jWHwNdrG9-6jd9I7K1si3kTRneNwftZV9m6rkrAfWQ",
   <span class="highlight">"authentication": [... array of acceptable authentication suites ...]</span>
 }
     </pre>
@@ -514,15 +514,15 @@ A detailed example of a valid set of authentication credentials follows:
     </p>
 
     <pre class="example nohighlight" title="Detailed example of authentication credentials entry">{
-  "@context":"https://w3id.org/veres-one/v1",
-  "id":"did:v1:nym:4jWHwNdrG9-6jd9I7K1si3kTRneNwftZV9m6rkrAfWQ",
+  "@context": "https://w3id.org/veres-one/v1",
+  "id": "did:v1:nym:4jWHwNdrG9-6jd9I7K1si3kTRneNwftZV9m6rkrAfWQ",
   "authentication": [{
-    "type":"RsaSignatureAuthentication2018",
+    "type": "RsaSignatureAuthentication2018",
     "publicKey": {
-      "id":"did:v1:nym:4jWHwNdrG9-6jd9I7K1si3kTRneNwftZV9m6rkrAfWQ#authn-key-1",
-      "type":"RsaVerificationKey2018",
-      "owner":"did:v1:nym:4jWHwNdrG9-6jd9I7K1si3kTRneNwftZV9m6rkrAfWQ",
-      "publicKeyPem":"-----BEGIN PUBLIC KEY-----\r\n
+      "id": "did:v1:nym:4jWHwNdrG9-6jd9I7K1si3kTRneNwftZV9m6rkrAfWQ#authn-key-1",
+      "type": "RsaVerificationKey2018",
+      "owner": "did:v1:nym:4jWHwNdrG9-6jd9I7K1si3kTRneNwftZV9m6rkrAfWQ",
+      "publicKeyPem": "-----BEGIN PUBLIC KEY-----\r\n
         MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAv69zWOjGaVnOhvD9vGb2\r\n
         pMev9tLmLc+ivPvkooUGj9iY76oPlX4JD1mcSaTql9kXDeY4sjElTTO4TAcJr3Vt\r\n
         BLEKo5WhsrGNYY30mWVepAZRJ0iRgVcy73/wB7nyqD+e7Uh5V845dHohLQoFJfxr\r\n
@@ -561,8 +561,8 @@ granting capabilities and the other for invoking capabilities.
     </p>
 
     <pre class="example nohighlight" title="">{
-  "@context":"https://w3id.org/veres-one/v1",
-  "id":"did:v1:nym:4jWHwNdrG9-6jd9I7K1si3kTRneNwftZV9m6rkrAfWQ",
+  "@context": "https://w3id.org/veres-one/v1",
+  "id": "did:v1:nym:4jWHwNdrG9-6jd9I7K1si3kTRneNwftZV9m6rkrAfWQ",
   <span class="highlight">"grantCapability": [... array of capability grant suites  ...]</span>
   <span class="highlight">"invokeCapability": [... array of capability invocation suites ...]</span>
 }
@@ -575,11 +575,11 @@ follows:
 
     <pre class="example nohighlight" title="">
 {
-  "@context":"https://w3id.org/veres-one/v1",
-  "id":"did:v1:nym:4jWHwNdrG9-6jd9I7K1si3kTRneNwftZV9m6rkrAfWQ",
+  "@context": "https://w3id.org/veres-one/v1",
+  "id": "did:v1:nym:4jWHwNdrG9-6jd9I7K1si3kTRneNwftZV9m6rkrAfWQ",
   ...
   "grantCapability": [{
-    "type":"RsaSignatureCapabilityAuthorization2018",
+    "type": "RsaSignatureCapabilityAuthorization2018",
     "publicKey": {
       "id": "did:v1:nym:4jWHwNdrG9-6jd9I7K1si3kTRneNwftZV9m6rkrAfWQ#ocap-grant-key-1",
       "type": "RsaVerificationKey2018",
@@ -595,12 +595,12 @@ follows:
     }
   }],
   "invokeCapability": [{
-    "type":"RsaSignatureCapabilityAuthorization2018",
+    "type": "RsaSignatureCapabilityAuthorization2018",
     "publicKey":{
-      "id":"did:v1:nym:4jWHwNdrG9-6jd9I7K1si3kTRneNwftZV9m6rkrAfWQ#ocap-invoke-key-1",
-      "type":"RsaVerificationKey2018",
-      "owner":"did:v1:nym:4jWHwNdrG9-6jd9I7K1si3kTRneNwftZV9m6rkrAfWQ",
-      "publicKeyPem":"-----BEGIN PUBLIC KEY-----\r\n
+      "id": "did:v1:nym:4jWHwNdrG9-6jd9I7K1si3kTRneNwftZV9m6rkrAfWQ#ocap-invoke-key-1",
+      "type": "RsaVerificationKey2018",
+      "owner": "did:v1:nym:4jWHwNdrG9-6jd9I7K1si3kTRneNwftZV9m6rkrAfWQ",
+      "publicKeyPem": "-----BEGIN PUBLIC KEY-----\r\n
         MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAyLDpcQeA5XPqoTkVc70H\r\n
         DCd1IWysF1k8fNs5SWAM6hS5lsyJayWGbIOwzRWaosgKhpHzvH5Uwai5/Q0kJhmI\r\n
         WF/Qoh71wzMYwlmdO7hvBpHGMqhLcD3ysnntsAjqRXxja/f4KSW+sDsUuJWyN+Dr\r\n
@@ -646,10 +646,10 @@ HTTP endpoints:
   </table>
 
   <section>
-    <h2>Discovering Service Endpoints</h2>
+    <h2>HTTP API Discovery</h2>
 
     <p>
-A website may provide service endpoint discovery by embedding JSON-LD in their
+A website may provide HTTP API endpoint discovery by embedding JSON-LD in their
 top-most HTML web page (e.g. at <code>https://example.com/</code>):
     </p>
 
@@ -699,7 +699,7 @@ In the following example a JSON-compatible service description is provided
     <h2>Creating a DID</h2>
 
     <p>
-A DID is created by performing an HTTP POST of a signed DID Document
+A DID is created by performing an HTTP POST of a signed operation
 to the <code>veresOneOperationsService</code>. The following HTTP status codes
 are defined for this service:
     </p>
@@ -711,19 +711,22 @@ are defined for this service:
       </thead>
       <tbody>
         <tr>
-          <td>201</td>
+          <td>202</td>
           <td>
-DID creation request was successful. The HTTP <code>Location</code> header will
-contain the URL for the newly created ledger operation.
+DID creation request was accepted. The HTTP <code>Location</code> header will
+contain the URL for the newly created ledger operation. The operation is not
+guaranteed to succeed. You can check to see if the operation succeeded by
+requesting the operation, which will eventually refer to an event and a block
+if it was successful.
           </td>
         </tr>
         <tr>
           <td>400</td>
-          <td>DID creation request failed.</td>
+          <td>Operation failed.</td>
         </tr>
         <tr>
           <td>409</td>
-          <td>A duplicate DID exists.</td>
+          <td>Create operation failed because a duplicate DID exists.</td>
         </tr>
       </tbody>
     </table>
@@ -740,6 +743,80 @@ Content-Length: 1062
 Accept: application/ld+json, application/json, text/plain, */*
 Accept-Encoding: gzip, deflate
 
+{
+  "@context": "https://w3id.org/veres-one/v1",
+  "type": "CreateWebLedgerRecord",
+  "record":{
+    "@context": "https://w3id.org/veres-one/v1",
+    "id": "did:v1:test:nym:4jWHwNdrG9-6jd9I7K1si3kTRneNwftZV9m6rkrAfWQ",
+    "authentication": [{
+      "type": "RsaSignatureAuthentication2018",
+      "publicKey": {
+        "id": "did:v1:test:nym:4jWHwNdrG9-6jd9I7K1si3kTRneNwftZV9m6rkrAfWQ#authn-key-1",
+        "type": "RsaSigningKey2018",
+        "owner": "did:v1:test:nym:4jWHwNdrG9-6jd9I7K1si3kTRneNwftZV9m6rkrAfWQ",
+        "publicKeyPem": "-----BEGIN PUBLIC KEY-----\r\n
+          MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAv69zWOjGaVnOhvD9vGb2\r\n
+          pMev9tLmLc+ivPvkooUGj9iY76oPlX4JD1mcSaTql9kXDeY4sjElTTO4TAcJr3Vt\r\n
+          BLEKo5WhsrGNYY30mWVepAZRJ0iRgVcy73/wB7nyqD+e7Uh5V845dHohLQoFJfxr\r\n
+          DTyW0X6447YI1xuuPU5kTgfS16b/PFClS7hCWW/Ih0rCSQ8o1RD0ZwoEBptE+TeB\r\n
+          dt+c46IQY0C9z0lZyy+ukK70HXK0n+jL0hT2eASGBD/KzAdJagKjQbXTbs7IlzW0\r\n
+          17j9nMFyK8pdrmHnNsG+6Gv9sDZC9WVCKur370JqAKRZeVPNPW8Ca5ZmCR/mqjYp\r\n
+          zQIDAQAB\r\n
+          -----END PUBLIC KEY-----\r\n"
+      }
+    }],
+    "grantCapability": [{
+      "type": "RsaSignatureCapabilityAuthorization2018",
+      "publicKey": {
+        "id": "did:v1:test:nym:4jWHwNdrG9-6jd9I7K1si3kTRneNwftZV9m6rkrAfWQ#ocap-grant-key-1",
+        "type": "RsaSigningKey2018",
+        "owner": "did:v1:test:nym:4jWHwNdrG9-6jd9I7K1si3kTRneNwftZV9m6rkrAfWQ",
+        "publicKeyPem": "-----BEGIN PUBLIC KEY-----\r\n
+          MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAt1NoVOTwGly/bOAV/4mG\r\n
+          J/YgrcNOVBRdO6qJz4aX0k6jFJWKZiXlVORjJOiggM+ozhaOs2g0tmEaxKh/87wV\r\n
+          vf8snrr8Pw4vuyz1YCKtnrVWK1VzSCq37XGTbPNhbgWJA4IvqEy/sY/LAmQKczop\r\n
+          flhN0m/3WMjr/1pxjEEYijOIMomGkw97z9k7Co4f3HjgdsYCTIIpImpSDmFyqLzU\r\n
+          riSY+2mI80QzWfmOoMmdDMjcYjoB9DQv3b38QWU0nzmb5xgLo63SyuzPMI8yQ7LO\r\n
+          cSv1V+6jcVnfB7SKh3jhWZM55TXX/GNvv7FLQd/FmAiWxxtyOaMcmJY6MnQUHs/B\r\n
+          pQIDAQAB\r\n
+          -----END PUBLIC KEY-----\r\n"
+      }
+    }],
+    "invokeCapability": [{
+      "type": "RsaSignatureCapabilityAuthorization2018",
+      "publicKey": {
+        "id": "did:v1:test:nym:4jWHwNdrG9-6jd9I7K1si3kTRneNwftZV9m6rkrAfWQ#ocap-invoke-key-1",
+        "type": "RsaSigningKey2018",
+        "owner": "did:v1:test:nym:4jWHwNdrG9-6jd9I7K1si3kTRneNwftZV9m6rkrAfWQ",
+        "publicKeyPem": "-----BEGIN PUBLIC KEY-----\r\n
+          MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAyLDpcQeA5XPqoTkVc70H\r\n
+          DCd1IWysF1k8fNs5SWAM6hS5lsyJayWGbIOwzRWaosgKhpHzvH5Uwai5/Q0kJhmI\r\n
+          WF/Qoh71wzMYwlmdO7hvBpHGMqhLcD3ysnntsAjqRXxja/f4KSW+sDsUuJWyN+Dr\r\n
+          BrfYFSP60IfRGyc9+JAaOz1oEXV45AK/w0xVUOzEjC2Lg0R5BY+Jace+t7RFJmnD\r\n
+          h9c+18AzLhIwXTDjojXsT1km3a8yVyjFMddGvUashAhAwPr3/Ztl//WnxwUojzFK\r\n
+          9XL5estUDoCg31q7khZ9j3B6UgYP1mwfIeQmWWBt++lUtYRaKNjtVdRbIcNOYb4I\r\n
+          MwIDAQAB\r\n
+          -----END PUBLIC KEY-----\r\n"
+      }
+    }]
+  },
+  "proof": [{
+    "type": "RsaSignature2018",
+    "created": "2018-02-21T19:16:32Z",
+    "creator": "did:v1:test:nym:4jWHwNdrG9-6jd9I7K1si3kTRneNwftZV9m6rkrAfWQ#ocap-invoke-key-1",
+    "capability": "did:v1:test:nym:4jWHwNdrG9-6jd9I7K1si3kTRneNwftZV9m6rkrAfWQ",
+    "capabilityAction": "CreateWebLedgerRecord",
+    "jws": "eyJhbGciOiJSUzI1NiIsImI2NCI6ZmFsc2UsImNyaXQiOlsiYjY0Il19..McEjwFQxYmfFcC0rgMly3iNCV2ZiHL1Pr281CG6jh50QY3aOynH2CR68QCrylVPHF2WGt4hTPRY1JlMGpcMN5EZb3sqW_NKXHV6i4KuSoZBzlqBKo3d51imdJbpLOiYHqwbOqUqka3zpTicvnNKd2CmHa6ThWPNDidKc3eveNE9heFt5DnMvBEM-LoOv5DXIIQ0XrSmB2DFJ8D0LbRAbiklZZ4TthtP4eLsrDBd3B6_eaNCbJUMlctLKxoU2xLCpr_-08_WNLmXVSLu6RUKFeZo94BqQNLIBBv84BPTNE6Q7UACKGgST12ImeX6sVq1Vayb_QONLn7a2Ta__aS0u6w",
+    "proofPurpose": "invokeCapability"
+  }, {
+    "type": "EquihashProof2017",
+    "equihashParameterN":64,
+    "equihashParameterK":3,
+    "nonce": "AQAAAA==",
+    "proofValue": "AAA78QAA1EEAAXbgAAGfOgAA0jcAAfNiAAF7TwABsQM="
+  }]
+}
     </pre>
 
     <p>
@@ -835,15 +912,15 @@ The following is a complete example of a typical Veres One DID Document:
 
     <pre class="example nohighlight">
 {
-  "@context":"https://w3id.org/veres-one/v1",
-  "id":"did:v1:nym:4jWHwNdrG9-6jd9I7K1si3kTRneNwftZV9m6rkrAfWQ",
+  "@context": "https://w3id.org/veres-one/v1",
+  "id": "did:v1:nym:4jWHwNdrG9-6jd9I7K1si3kTRneNwftZV9m6rkrAfWQ",
   "authentication": [{
-    "type":"RsaSignatureAuthentication2018",
+    "type": "RsaSignatureAuthentication2018",
     "publicKey": {
-      "id":"did:v1:nym:4jWHwNdrG9-6jd9I7K1si3kTRneNwftZV9m6rkrAfWQ#authn-key-1",
-      "type":"RsaVerificationKey2018",
-      "owner":"did:v1:nym:4jWHwNdrG9-6jd9I7K1si3kTRneNwftZV9m6rkrAfWQ",
-      "publicKeyPem":"-----BEGIN PUBLIC KEY-----\r\n
+      "id": "did:v1:nym:4jWHwNdrG9-6jd9I7K1si3kTRneNwftZV9m6rkrAfWQ#authn-key-1",
+      "type": "RsaVerificationKey2018",
+      "owner": "did:v1:nym:4jWHwNdrG9-6jd9I7K1si3kTRneNwftZV9m6rkrAfWQ",
+      "publicKeyPem": "-----BEGIN PUBLIC KEY-----\r\n
         MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAv69zWOjGaVnOhvD9vGb2\r\n
         pMev9tLmLc+ivPvkooUGj9iY76oPlX4JD1mcSaTql9kXDeY4sjElTTO4TAcJr3Vt\r\n
         BLEKo5WhsrGNYY30mWVepAZRJ0iRgVcy73/wB7nyqD+e7Uh5V845dHohLQoFJfxr\r\n
@@ -854,7 +931,7 @@ The following is a complete example of a typical Veres One DID Document:
     }
   }],
   "grantCapability": [{
-    "type":"RsaSignatureCapabilityAuthorization2018",
+    "type": "RsaSignatureCapabilityAuthorization2018",
     "publicKey": {
       "id": "did:v1:nym:4jWHwNdrG9-6jd9I7K1si3kTRneNwftZV9m6rkrAfWQ#ocap-grant-key-1",
       "type": "RsaVerificationKey2018",
@@ -870,12 +947,12 @@ The following is a complete example of a typical Veres One DID Document:
     }
   }],
   "invokeCapability": [{
-    "type":"RsaSignatureCapabilityAuthorization2018",
+    "type": "RsaSignatureCapabilityAuthorization2018",
     "publicKey":{
-      "id":"did:v1:nym:4jWHwNdrG9-6jd9I7K1si3kTRneNwftZV9m6rkrAfWQ#ocap-invoke-key-1",
-      "type":"RsaVerificationKey2018",
-      "owner":"did:v1:nym:4jWHwNdrG9-6jd9I7K1si3kTRneNwftZV9m6rkrAfWQ",
-      "publicKeyPem":"-----BEGIN PUBLIC KEY-----\r\n
+      "id": "did:v1:nym:4jWHwNdrG9-6jd9I7K1si3kTRneNwftZV9m6rkrAfWQ#ocap-invoke-key-1",
+      "type": "RsaVerificationKey2018",
+      "owner": "did:v1:nym:4jWHwNdrG9-6jd9I7K1si3kTRneNwftZV9m6rkrAfWQ",
+      "publicKeyPem": "-----BEGIN PUBLIC KEY-----\r\n
         MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAyLDpcQeA5XPqoTkVc70H\r\n
         DCd1IWysF1k8fNs5SWAM6hS5lsyJayWGbIOwzRWaosgKhpHzvH5Uwai5/Q0kJhmI\r\n
         WF/Qoh71wzMYwlmdO7hvBpHGMqhLcD3ysnntsAjqRXxja/f4KSW+sDsUuJWyN+Dr\r\n
