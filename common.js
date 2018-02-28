@@ -36,17 +36,17 @@ var ccg = {
         "Shane McCarron",
         "Christopher Allen"
       ],
-      status: "CGDRAFT",
+      status: "W3C Community Group Draft Specification",
       publisher: "Digital Verification Community Group"
     },
     "LD-PROOFS": {
-      title: "Linked Data Signatures 1.0",
+      title: "Linked Data Proofs 1.0",
       href: "https://w3c-dvcg.github.io/ld-proofs/",
       authors: [
       	"Dave Longley",
         "Manu Sporny"
       ],
-      status: "CGDRAFT",
+      status: "W3C Community Group Draft Specification",
       publisher: "Digital Verification Community Group"
     },
     "LDS-RSA2018": {
@@ -56,7 +56,7 @@ var ccg = {
       	"Dave Longley",
         "Manu Sporny"
       ],
-      status: "CGDRAFT",
+      status: "W3C Community Group Draft Specification",
       publisher: "Digital Verification Community Group"
     },
     "WEB-LEDGER": {
@@ -66,7 +66,7 @@ var ccg = {
         "Manu Sporny",
       	"Dave Longley"
       ],
-      status: "CGDRAFT",
+      status: "W3C Community Group Draft Specification",
       publisher: "Credentials Community Group"
     },
     "DID": {
@@ -80,7 +80,7 @@ var ccg = {
       	"Ryan  Grant",
       	"Markus Sabadello"
       ],
-      status: "CGDRAFT",
+      status: "W3C Community Group Draft Specification",
       publisher: "Credentials Community Group"
     },
     // aliases to known references
@@ -91,7 +91,7 @@ var ccg = {
       title: 'RDF Dataset Normalization',
       href: 'http://json-ld.github.io/normalization/spec/',
       authors: ['Dave Longley', 'Manu Sporny'],
-      status:   'CG-DRAFT',
+      status:   'W3C Community Group Draft Specification',
       publisher:  'Credentials W3C Community Group'
     },
   }
