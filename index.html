@@ -638,19 +638,12 @@ A detailed example of a valid set of authentication credentials follows:
   "@context": "https://w3id.org/veres-one/v1",
   "id": "did:v1:nym:4jWHwNdrG9-6jd9I7K1si3kTRneNwftZV9m6rkrAfWQ",
   "authentication": [{
-    "type": "RsaSignatureAuthentication2018",
+    "type": "Ed25519SignatureAuthentication2018",
     "publicKey": {
       "id": "did:v1:nym:4jWHwNdrG9-6jd9I7K1si3kTRneNwftZV9m6rkrAfWQ#authn-key-1",
-      "type": "RsaVerificationKey2018",
+      "type": "Ed25519VerificationKey2018",
       "owner": "did:v1:nym:4jWHwNdrG9-6jd9I7K1si3kTRneNwftZV9m6rkrAfWQ",
-      "publicKeyPem": "-----BEGIN PUBLIC KEY-----\r\n
-        MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAv69zWOjGaVnOhvD9vGb2\r\n
-        pMev9tLmLc+ivPvkooUGj9iY76oPlX4JD1mcSaTql9kXDeY4sjElTTO4TAcJr3Vt\r\n
-        BLEKo5WhsrGNYY30mWVepAZRJ0iRgVcy73/wB7nyqD+e7Uh5V845dHohLQoFJfxr\r\n
-        DTyW0X6447YI1xuuPU5kTgfS16b/PFClS7hCWW/Ih0rCSQ8o1RD0ZwoEBptE+TeB\r\n
-        dt+c46IQY0C9z0lZyy+ukK70HXK0n+jL0hT2eASGBD/KzAdJagKjQbXTbs7IlzW0\r\n
-        17j9nMFyK8pdrmHnNsG+6Gv9sDZC9WVCKur370JqAKRZeVPNPW8Ca5ZmCR/mqjYp\r\n
-        zQIDAQAB\r\n-----END PUBLIC KEY-----\r\n"
+      "publicKeyBase58": "HURvcFiZbmtaQQMhkVVoq1JpxxRe8UrBS5wBQMJhXkfM",
     }
   }],
   ...</pre>
@@ -700,35 +693,21 @@ follows:
   "id": "did:v1:nym:4jWHwNdrG9-6jd9I7K1si3kTRneNwftZV9m6rkrAfWQ",
   ...
   "grantCapability": [{
-    "type": "RsaSignatureCapabilityAuthorization2018",
+    "type": "Ed25519SignatureCapabilityAuthorization2018",
     "publicKey": {
       "id": "did:v1:nym:4jWHwNdrG9-6jd9I7K1si3kTRneNwftZV9m6rkrAfWQ#ocap-grant-key-1",
-      "type": "RsaVerificationKey2018",
+      "type": "Ed25519VerificationKey2018",
       "owner": "did:v1:nym:4jWHwNdrG9-6jd9I7K1si3kTRneNwftZV9m6rkrAfWQ",
-      "publicKeyPem": "-----BEGIN PUBLIC KEY-----\r\n
-        MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAt1NoVOTwGly/bOAV/4mG\r\n
-        J/YgrcNOVBRdO6qJz4aX0k6jFJWKZiXlVORjJOiggM+ozhaOs2g0tmEaxKh/87wV\r\n
-        vf8snrr8Pw4vuyz1YCKtnrVWK1VzSCq37XGTbPNhbgWJA4IvqEy/sY/LAmQKczop\r\n
-        flhN0m/3WMjr/1pxjEEYijOIMomGkw97z9k7Co4f3HjgdsYCTIIpImpSDmFyqLzU\r\n
-        riSY+2mI80QzWfmOoMmdDMjcYjoB9DQv3b38QWU0nzmb5xgLo63SyuzPMI8yQ7LO\r\n
-        cSv1V+6jcVnfB7SKh3jhWZM55TXX/GNvv7FLQd/FmAiWxxtyOaMcmJY6MnQUHs/B\r\n
-        pQIDAQAB\r\n-----END PUBLIC KEY-----\r\n"
+      "publicKeyBase58": "HURvcFiZbmtaQQMhkVVoq1JpxxRe8UrBS5wBQMJhXkfM"
     }
   }],
   "invokeCapability": [{
-    "type": "RsaSignatureCapabilityAuthorization2018",
+    "type": "Ed25519SignatureCapabilityAuthorization2018",
     "publicKey": {
       "id": "did:v1:nym:4jWHwNdrG9-6jd9I7K1si3kTRneNwftZV9m6rkrAfWQ#ocap-invoke-key-1",
-      "type": "RsaVerificationKey2018",
+      "type": "Ed25519VerificationKey2018",
       "owner": "did:v1:nym:4jWHwNdrG9-6jd9I7K1si3kTRneNwftZV9m6rkrAfWQ",
-      "publicKeyPem": "-----BEGIN PUBLIC KEY-----\r\n
-        MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAyLDpcQeA5XPqoTkVc70H\r\n
-        DCd1IWysF1k8fNs5SWAM6hS5lsyJayWGbIOwzRWaosgKhpHzvH5Uwai5/Q0kJhmI\r\n
-        WF/Qoh71wzMYwlmdO7hvBpHGMqhLcD3ysnntsAjqRXxja/f4KSW+sDsUuJWyN+Dr\r\n
-        BrfYFSP60IfRGyc9+JAaOz1oEXV45AK/w0xVUOzEjC2Lg0R5BY+Jace+t7RFJmnD\r\n
-        h9c+18AzLhIwXTDjojXsT1km3a8yVyjFMddGvUashAhAwPr3/Ztl//WnxwUojzFK\r\n
-        9XL5estUDoCg31q7khZ9j3B6UgYP1mwfIeQmWWBt++lUtYRaKNjtVdRbIcNOYb4I\r\n
-        MwIDAQAB\r\n-----END PUBLIC KEY-----\r\n"
+      "publicKeyBase58": "Gu5yfYsbYvmSeSsAbBBNafy9i6G3o5kiX5PxUGPg1iFJ"
     }
   }]
 }
@@ -871,77 +850,50 @@ Accept-Encoding: gzip, deflate
     "@context": "https://w3id.org/veres-one/v1",
     "id": "did:v1:test:nym:4jWHwNdrG9-6jd9I7K1si3kTRneNwftZV9m6rkrAfWQ",
     "authentication": [{
-      "type": "RsaSignatureAuthentication2018",
+      "type": "Ed25519SignatureAuthentication2018",
       "publicKey": {
         "id": "did:v1:test:nym:4jWHwNdrG9-6jd9I7K1si3kTRneNwftZV9m6rkrAfWQ#authn-key-1",
-        "type": "RsaSigningKey2018",
+        "type": "Ed25519SigningKey2018",
         "owner": "did:v1:test:nym:4jWHwNdrG9-6jd9I7K1si3kTRneNwftZV9m6rkrAfWQ",
-        "publicKeyPem": "-----BEGIN PUBLIC KEY-----\r\n
-          MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAv69zWOjGaVnOhvD9vGb2\r\n
-          pMev9tLmLc+ivPvkooUGj9iY76oPlX4JD1mcSaTql9kXDeY4sjElTTO4TAcJr3Vt\r\n
-          BLEKo5WhsrGNYY30mWVepAZRJ0iRgVcy73/wB7nyqD+e7Uh5V845dHohLQoFJfxr\r\n
-          DTyW0X6447YI1xuuPU5kTgfS16b/PFClS7hCWW/Ih0rCSQ8o1RD0ZwoEBptE+TeB\r\n
-          dt+c46IQY0C9z0lZyy+ukK70HXK0n+jL0hT2eASGBD/KzAdJagKjQbXTbs7IlzW0\r\n
-          17j9nMFyK8pdrmHnNsG+6Gv9sDZC9WVCKur370JqAKRZeVPNPW8Ca5ZmCR/mqjYp\r\n
-          zQIDAQAB\r\n
-          -----END PUBLIC KEY-----\r\n"
+        "publicKeyBase58": "Gu5yfYsbYvmSeSsAbBBNafy9i6G3o5kiX5PxUGPg1iFJ"
       }
     }],
     "grantCapability": [{
-      "type": "RsaSignatureCapabilityAuthorization2018",
+      "type": "Ed25519SignatureCapabilityAuthorization2018",
       "publicKey": {
         "id": "did:v1:test:nym:4jWHwNdrG9-6jd9I7K1si3kTRneNwftZV9m6rkrAfWQ#ocap-grant-key-1",
-        "type": "RsaSigningKey2018",
+        "type": "Ed25519SigningKey2018",
         "owner": "did:v1:test:nym:4jWHwNdrG9-6jd9I7K1si3kTRneNwftZV9m6rkrAfWQ",
-        "publicKeyPem": "-----BEGIN PUBLIC KEY-----\r\n
-          MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAt1NoVOTwGly/bOAV/4mG\r\n
-          J/YgrcNOVBRdO6qJz4aX0k6jFJWKZiXlVORjJOiggM+ozhaOs2g0tmEaxKh/87wV\r\n
-          vf8snrr8Pw4vuyz1YCKtnrVWK1VzSCq37XGTbPNhbgWJA4IvqEy/sY/LAmQKczop\r\n
-          flhN0m/3WMjr/1pxjEEYijOIMomGkw97z9k7Co4f3HjgdsYCTIIpImpSDmFyqLzU\r\n
-          riSY+2mI80QzWfmOoMmdDMjcYjoB9DQv3b38QWU0nzmb5xgLo63SyuzPMI8yQ7LO\r\n
-          cSv1V+6jcVnfB7SKh3jhWZM55TXX/GNvv7FLQd/FmAiWxxtyOaMcmJY6MnQUHs/B\r\n
-          pQIDAQAB\r\n
-          -----END PUBLIC KEY-----\r\n"
+        "publicKeyBase58": "HURvcFiZbmtaQQMhkVVoq1JpxxRe8UrBS5wBQMJhXkfM"
       }
     }],
     "invokeCapability": [{
-      "type": "RsaSignatureCapabilityAuthorization2018",
+      "type": "Ed25519SignatureCapabilityAuthorization2018",
       "publicKey": {
         "id": "did:v1:test:nym:4jWHwNdrG9-6jd9I7K1si3kTRneNwftZV9m6rkrAfWQ#ocap-invoke-key-1",
-        "type": "RsaSigningKey2018",
+        "type": "Ed25519SigningKey2018",
         "owner": "did:v1:test:nym:4jWHwNdrG9-6jd9I7K1si3kTRneNwftZV9m6rkrAfWQ",
-        "publicKeyPem": "-----BEGIN PUBLIC KEY-----\r\n
-          MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAyLDpcQeA5XPqoTkVc70H\r\n
-          DCd1IWysF1k8fNs5SWAM6hS5lsyJayWGbIOwzRWaosgKhpHzvH5Uwai5/Q0kJhmI\r\n
-          WF/Qoh71wzMYwlmdO7hvBpHGMqhLcD3ysnntsAjqRXxja/f4KSW+sDsUuJWyN+Dr\r\n
-          BrfYFSP60IfRGyc9+JAaOz1oEXV45AK/w0xVUOzEjC2Lg0R5BY+Jace+t7RFJmnD\r\n
-          h9c+18AzLhIwXTDjojXsT1km3a8yVyjFMddGvUashAhAwPr3/Ztl//WnxwUojzFK\r\n
-          9XL5estUDoCg31q7khZ9j3B6UgYP1mwfIeQmWWBt++lUtYRaKNjtVdRbIcNOYb4I\r\n
-          MwIDAQAB\r\n
-          -----END PUBLIC KEY-----\r\n"
+        "publicKeyBase58": "FPa3QX9pPk1Qw75CAnhF2Qv2HwuWke4yxbqxzQbU5PLU"
       }
     }]
   },
   "proof": [{
-    "type": "RsaSignature2018",
-    "created": "2018-02-21T19:16:32Z",
-    "creator": "did:v1:test:nym:4jWHwNdrG9-6jd9I7K1si3kTRneNwftZV9m6rkrAfWQ#ocap-invoke-key-1",
-    "capability": "did:v1:test:nym:4jWHwNdrG9-6jd9I7K1si3kTRneNwftZV9m6rkrAfWQ",
-    "capabilityAction": "CreateWebLedgerRecord",
-    "jws": "eyJhbGciOiJSUzI1NiIsImI2NCI6ZmFsc2UsImNyaXQiOlsiYjY0Il19..
-      McEjwFQxYmfFcC0rgMly3iNCV2ZiHL1Pr281CG6jh50QY3aOynH2CR68QCrylVPHF2
-      WGt4hTPRY1JlMGpcMN5EZb3sqW_NKXHV6i4KuSoZBzlqBKo3d51imdJbpLOiYHqwbO
-      qUqka3zpTicvnNKd2CmHa6ThWPNDidKc3eveNE9heFt5DnMvBEM-LoOv5DXIIQ0XrS
-      mB2DFJ8D0LbRAbiklZZ4TthtP4eLsrDBd3B6_eaNCbJUMlctLKxoU2xLCpr_-08_WN
-      LmXVSLu6RUKFeZo94BqQNLIBBv84BPTNE6Q7UACKGgST12ImeX6sVq1Vayb_QONLn7
-      a2Ta__aS0u6w",
-    "proofPurpose": "invokeCapability"
+    "type" : "Ed25519Signature2018",
+    "created" : "2018-02-24T22:23:44Z",
+    "creator" : "did:v1:test:nym:5YSwjvBZqDbYQkoRG7jD7bCKifVdHBtxHMrATZyTX8xv#ocap-invoke-key-1",
+    "capability" : "did:v1:test:nym:5YSwjvBZqDbYQkoRG7jD7bCKifVdHBtxHMrATZyTX8xv",
+    "capabilityAction" : "RegisterDid",
+    "jws" : "eyJhbGciOiJFZERTQSIsImI2NCI6ZmFsc2UsImNyaXQiOlsiYjY0Il19..
+      _h3x8FRH6GXbSBGgtqtGRQc_HabNgYSv4M124oFG-1dzi4nJzJyXTXcNt8vb7mJV3fj
+      Izyt0jhO8hsmMJWf8Cw",
+    "proofPurpose" : "invokeCapability"
   }, {
-    "type": "EquihashProof2017",
-    "equihashParameterN": 64,
-    "equihashParameterK": 3,
-    "nonce": "AQAAAA==",
-    "proofValue": "AAA78QAA1EEAAXbgAAGfOgAA0jcAAfNiAAF7TwABsQM="
+    "type" : "EquihashProof2018",
+    "created" : "2018-02-24T22:23:45Z",
+    "equihashParameterK" : 3,
+    "equihashParameterN" : 64,
+    "nonce" : "AgAAAA==",
+    "proofValue" : "AAAVYwABwK8AAME7AAGOjAAAVkIAATc9AAFDLQABrc8="
   }]
 }
     </pre>
@@ -1011,19 +963,12 @@ Accept-Encoding: gzip, deflate
     "op": "add",
     "path": "/authentication",
     "value": {
-      "type": "RsaSignatureAuthentication2018",
+      "type": "Ed25519SignatureAuthentication2018",
       "publicKey": {
         "id": "did:v1:test:nym:4jWHwNdrG9-6jd9I7K1si3kTRneNwftZV9m6rkrAfWQ#authn-key-2",
-        "type": "RsaSigningKey2018",
+        "type": "Ed25519SigningKey2018",
         "owner": "did:v1:test:nym:4jWHwNdrG9-6jd9I7K1si3kTRneNwftZV9m6rkrAfWQ",
-        "publicKeyPem": "-----BEGIN PUBLIC KEY-----\r\n
-          MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwO+nXu33Rwq0W4SVWvnM\r\n
-          fJaoKjbP7OU9ExlRZ6HKQf4xUa9Vy8l97wBIwW0oZyXEy+EJHbGdcifQiw/pbsLK\r\n
-          rLG/e67VAmAWckSKunBPbFYdAtOpdy0+cYyGJ9/wbUgk2TMlVeAxPj2koFW8J/4b\r\n
-          G5xevq7R5vs79QMNQvfnkaLaOebxNpk6HwfdvCfs/wk0fgK3avCotZOyFAGAr6AY\r\n
-          4X4I1nCV5Zkhmtd3dguIkuACX/3a7tFxw6tQLoU2rIgrXvSdD9OZjeDDF9YBLUf2\r\n
-          28eNJfyR9dZoTfgsZq8u7aM5vEGPV471SC2Q2TPBpY2QAdjcp5XdnCmy2fWVaw6V\r\n
-          rwIDAQAB\r\n-----END PUBLIC KEY-----\r\n",
+        "publicKeyBase58": "BpJk2oxtkm99ubKqhtLF7fB2fCM1bETgpJLFg8QEuQK2"
       }
     }
   }, {
@@ -1031,19 +976,15 @@ Accept-Encoding: gzip, deflate
     "path": "/services/3",
   }],
   "proof": [{
-    "type": "RsaSignature2018",
-    "created": "2018-02-21T19:16:32Z",
-    "creator": "did:v1:test:nym:4jWHwNdrG9-6jd9I7K1si3kTRneNwftZV9m6rkrAfWQ#ocap-invoke-key-1",
-    "capability": "did:v1:test:nym:4jWHwNdrG9-6jd9I7K1si3kTRneNwftZV9m6rkrAfWQ",
-    "capabilityAction": "CreateWebLedgerRecord",
-    "jws": "eyJhbGciOiJSUzI1NiIsImI2NCI6ZmFsc2UsImNyaXQiOlsiYjY0Il19..
-      McEjwFQxYmfFcC0rgMly3iNCV2ZiHL1Pr281CG6jh50QY3aOynH2CR68QCrylVPHF2
-      WGt4hTPRY1JlMGpcMN5EZb3sqW_NKXHV6i4KuSoZBzlqBKo3d51imdJbpLOiYHqwbO
-      qUqka3zpTicvnNKd2CmHa6ThWPNDidKc3eveNE9heFt5DnMvBEM-LoOv5DXIIQ0XrS
-      mB2DFJ8D0LbRAbiklZZ4TthtP4eLsrDBd3B6_eaNCbJUMlctLKxoU2xLCpr_-08_WN
-      LmXVSLu6RUKFeZo94BqQNLIBBv84BPTNE6Q7UACKGgST12ImeX6sVq1Vayb_QONLn7
-      a2Ta__aS0u6w",
-    "proofPurpose": "invokeCapability"
+    "type" : "Ed25519Signature2018",
+    "created" : "2018-02-24T22:23:42Z",
+    "creator" : "did:v1:test:nym:91LAKSKtybvFjUdkTitBVXEF1kz9s24TCARuLfWBKGmw#ocap-invoke-key-1",
+    "capability" : "did:v1:test:nym:91LAKSKtybvFjUdkTitBVXEF1kz9s24TCARuLfWBKGmw",
+    "capabilityAction" : "RegisterDid",
+    "jws" : "eyJhbGciOiJFZERTQSIsImI2NCI6ZmFsc2UsImNyaXQiOlsiYjY0Il19..Ldx
+      5HbvS7-SvKTPGbRwBhc5xub95th__2-pphFRZUHFNd4Qs6R3u9j5elQkHciuLhvKB6a0
+      fURMa4puZNWLLDg",
+    "proofPurpose" : "invokeCapability"
   }, {
     "type": "EquihashProof2017",
     "equihashParameterN": 64,
@@ -1086,55 +1027,40 @@ The following is a complete example of a typical Veres One DID Document:
 
     <pre class="example nohighlight">
 {
-  "@context": "https://w3id.org/veres-one/v1",
-  "id": "did:v1:nym:4jWHwNdrG9-6jd9I7K1si3kTRneNwftZV9m6rkrAfWQ",
-  "authentication": [{
-    "type": "RsaSignatureAuthentication2018",
-    "publicKey": {
-      "id": "did:v1:nym:4jWHwNdrG9-6jd9I7K1si3kTRneNwftZV9m6rkrAfWQ#authn-key-1",
-      "type": "RsaVerificationKey2018",
-      "owner": "did:v1:nym:4jWHwNdrG9-6jd9I7K1si3kTRneNwftZV9m6rkrAfWQ",
-      "publicKeyPem": "-----BEGIN PUBLIC KEY-----\r\n
-        MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAv69zWOjGaVnOhvD9vGb2\r\n
-        pMev9tLmLc+ivPvkooUGj9iY76oPlX4JD1mcSaTql9kXDeY4sjElTTO4TAcJr3Vt\r\n
-        BLEKo5WhsrGNYY30mWVepAZRJ0iRgVcy73/wB7nyqD+e7Uh5V845dHohLQoFJfxr\r\n
-        DTyW0X6447YI1xuuPU5kTgfS16b/PFClS7hCWW/Ih0rCSQ8o1RD0ZwoEBptE+TeB\r\n
-        dt+c46IQY0C9z0lZyy+ukK70HXK0n+jL0hT2eASGBD/KzAdJagKjQbXTbs7IlzW0\r\n
-        17j9nMFyK8pdrmHnNsG+6Gv9sDZC9WVCKur370JqAKRZeVPNPW8Ca5ZmCR/mqjYp\r\n
-        zQIDAQAB\r\n-----END PUBLIC KEY-----\r\n"
-    }
+  "@context":"https://w3id.org/veres-one/v1",
+  "id":"did:v1:test:nym:5YSwjvBZqDbYQkoRG7jD7bCKifVdHBtxHMrATZyTX8xv",
+  "authentication":[{
+    "type":"Ed25519SignatureAuthentication2018",
+    "publicKey":[
+      {
+        "id":"did:v1:test:nym:5YSwjvBZqDbYQkoRG7jD7bCKifVdHBtxHMrATZyTX8xv#authn-key-1",
+        "type":"Ed25519VerificationKey2018",
+        "owner":"did:v1:test:nym:5YSwjvBZqDbYQkoRG7jD7bCKifVdHBtxHMrATZyTX8xv",
+        "publicKeyBase58":"5YSwjvBZqDbYQkoRG7jD7bCKifVdHBtxHMrATZyTX8xv"
+      }
+    ]
   }],
-  "grantCapability": [{
-    "type": "RsaSignatureCapabilityAuthorization2018",
-    "publicKey": {
-      "id": "did:v1:nym:4jWHwNdrG9-6jd9I7K1si3kTRneNwftZV9m6rkrAfWQ#ocap-grant-key-1",
-      "type": "RsaVerificationKey2018",
-      "owner": "did:v1:nym:4jWHwNdrG9-6jd9I7K1si3kTRneNwftZV9m6rkrAfWQ",
-      "publicKeyPem": "-----BEGIN PUBLIC KEY-----\r\n
-        MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAt1NoVOTwGly/bOAV/4mG\r\n
-        J/YgrcNOVBRdO6qJz4aX0k6jFJWKZiXlVORjJOiggM+ozhaOs2g0tmEaxKh/87wV\r\n
-        vf8snrr8Pw4vuyz1YCKtnrVWK1VzSCq37XGTbPNhbgWJA4IvqEy/sY/LAmQKczop\r\n
-        flhN0m/3WMjr/1pxjEEYijOIMomGkw97z9k7Co4f3HjgdsYCTIIpImpSDmFyqLzU\r\n
-        riSY+2mI80QzWfmOoMmdDMjcYjoB9DQv3b38QWU0nzmb5xgLo63SyuzPMI8yQ7LO\r\n
-        cSv1V+6jcVnfB7SKh3jhWZM55TXX/GNvv7FLQd/FmAiWxxtyOaMcmJY6MnQUHs/B\r\n
-        pQIDAQAB\r\n-----END PUBLIC KEY-----\r\n"
-    }
+  "grantCapability":[{
+    "type":"Ed25519SignatureCapabilityAuthorization2018",
+    "publicKey":[
+      {
+        "id":"did:v1:test:nym:5YSwjvBZqDbYQkoRG7jD7bCKifVdHBtxHMrATZyTX8xv#ocap-grant-key-1",
+        "type":"Ed25519VerificationKey2018",
+        "owner":"did:v1:test:nym:5YSwjvBZqDbYQkoRG7jD7bCKifVdHBtxHMrATZyTX8xv",
+        "publicKeyBase58":"6kQvEZxCiMMVaV4ywczC1LbXGiG3Gv27hVvs4gd7CGLH"
+      }
+    ]
   }],
-  "invokeCapability": [{
-    "type": "RsaSignatureCapabilityAuthorization2018",
-    "publicKey": {
-      "id": "did:v1:nym:4jWHwNdrG9-6jd9I7K1si3kTRneNwftZV9m6rkrAfWQ#ocap-invoke-key-1",
-      "type": "RsaVerificationKey2018",
-      "owner": "did:v1:nym:4jWHwNdrG9-6jd9I7K1si3kTRneNwftZV9m6rkrAfWQ",
-      "publicKeyPem": "-----BEGIN PUBLIC KEY-----\r\n
-        MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAyLDpcQeA5XPqoTkVc70H\r\n
-        DCd1IWysF1k8fNs5SWAM6hS5lsyJayWGbIOwzRWaosgKhpHzvH5Uwai5/Q0kJhmI\r\n
-        WF/Qoh71wzMYwlmdO7hvBpHGMqhLcD3ysnntsAjqRXxja/f4KSW+sDsUuJWyN+Dr\r\n
-        BrfYFSP60IfRGyc9+JAaOz1oEXV45AK/w0xVUOzEjC2Lg0R5BY+Jace+t7RFJmnD\r\n
-        h9c+18AzLhIwXTDjojXsT1km3a8yVyjFMddGvUashAhAwPr3/Ztl//WnxwUojzFK\r\n
-        9XL5estUDoCg31q7khZ9j3B6UgYP1mwfIeQmWWBt++lUtYRaKNjtVdRbIcNOYb4I\r\n
-        MwIDAQAB\r\n-----END PUBLIC KEY-----\r\n"
-    }
+  "invokeCapability":[{
+    "type":"Ed25519SignatureCapabilityAuthorization2018",
+    "publicKey":[
+      {
+        "id":"did:v1:test:nym:5YSwjvBZqDbYQkoRG7jD7bCKifVdHBtxHMrATZyTX8xv#ocap-invoke-key-1",
+        "type":"Ed25519VerificationKey2018",
+        "owner":"did:v1:test:nym:5YSwjvBZqDbYQkoRG7jD7bCKifVdHBtxHMrATZyTX8xv",
+        "publicKeyBase58":"AEht5v3xudqJs9qo5jC88fAsAGhPr6zLYJ3yfuKsAY7K"
+      }
+    ]
   }]
 }
     </pre>
