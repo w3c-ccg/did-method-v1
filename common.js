@@ -71,7 +71,7 @@ var ccg = {
     },
     "DID": {
       title: "Decentralized Identifiers 1.0",
-      href: "https://w3c.github.io/web-ledger/",
+      href: "https://w3c-ccg.github.io/did-spec/",
       authors: [
         "Drummond Reed",
       	"Manu Sporny",
