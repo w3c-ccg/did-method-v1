@@ -1039,6 +1039,39 @@ algorithm is designed to smoothly upgrade to the new cryptographic system
 well in advance of the failure of the current cryptographic system.
     </p>
   </section>
+
+  <section>
+    <h2>Censorship Resistance</h2>
+
+    <p>
+The consensus mechanism used by the Veres One blockchain is designed to
+make censoring individuals or organizations incredibly difficult. The
+consensus algorithm operates on a directed acyclic graph that resembles
+the Git version control system. Adding new blocks to the blockchain consists
+of merging various event streams, which are DAGs themselves, into the existing
+DAG. When an individual wants to perform an operation on the blockchain, they
+submit that operation to the network. If an attacker wanted to censor that
+operation, they would have to censor everyone that saw the operation happen
+on the network. This would lead to censoring not only the individual, but
+everyone that talked to the individual. While this might be possible to do
+on small, tightly controlled networks, it is extremely difficult to do on
+large active networks.
+    </p>
+
+    <p>
+Individual censorship is easily detected by the individual, as operations
+gossiped to the network are not included in the next block. This sort of
+censorship has to happen at every node in the network (which is highly
+unlikely).
+    </p>
+
+    <p>
+If an individual is concerned about censorship, they are urged to gossip with
+as many nodes in the network as possible. This ensures that any attacker node
+that desires to censor will be easily detected and the rest of the non-attacking
+nodes will get the operation into the network.
+    </p>
+  </section>
 </section>
 
 <section>
