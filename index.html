@@ -1078,7 +1078,21 @@ nodes will get the operation into the network.
   <h1>Privacy Considerations</h1>
 
   <section>
-    <h2></h2>
+    <h2>GDPR Compliance</h2>
+
+    <p>
+Veres One is designed to be GDPR compliant. As such, it is very strict with
+regard to what data can be written to the blockchain and what data is required
+to exist off-ledger. As a general rule, any field that could possibly encode
+any personally identifiable information is not allowed. It is still possible
+to tie this information to a DID by using an external service, pointed to by
+a service description in the DID Document, that supports the GDPR
+Right to be Forgotten mandate. This approach is more strict than other
+blockchains due to privacy failures on other blockchains to keep
+Personally Identifiable Information offchain. While this approach is more
+strict, the functionality of appending information to a DID Document in a
+GDPR compliant manner is still achieved.
+    </p>
   </section>
 </section>
 
