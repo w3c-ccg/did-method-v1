@@ -1019,7 +1019,25 @@ Transfer-Encoding: chunked
   <h1>Security Considerations</h1>
 
   <section>
-    <h2></h2>
+    <h2>Cryptographic Agility</h2>
+
+    <p>
+The core consensus algorithm for Veres One utilizes the Ed25519 cryptographic
+suite. This algorithm is a well vetted and widely deployed cryptographic
+system that represents the state of the art in modern cryptographic systems.
+The algorithm depends on the hardness of factoring large numbers, which is
+expected to become easier given operational quantum computers. These
+computers are not expected to be feasible in the next decade, but might
+eventually become feasible.
+    </p>
+
+    <p>
+If new cryptographic primitives are needed, the Veres One consensus algorithm
+is upgradable in order to provide cryptographic agility. If the current
+cryptographic system breaks, a new one can be deployed and the consensus
+algorithm is designed to smoothly upgrade to the new cryptographic system
+well in advance of the failure of the current cryptographic system.
+    </p>
   </section>
 </section>
 
