@@ -1078,6 +1078,19 @@ nodes will get the operation into the network.
   <h1>Privacy Considerations</h1>
 
   <section>
+    <h2>Identifier-based Correlation</h2>
+
+    <p>
+Decentralized Identifiers are global and often long-lived and are thus
+susceptible to being tracked across multiple interactions. Implementers
+are urged to be wary of using long lived identifiers where tracking protection
+is a system requirement. If strong anti-correlation properties and/or strong
+tracking-protection are required, pairwise identifiers such as the
+<tt>did:key</tt> method or bearer tokens are a better design choice.
+    </p>
+  </section>
+
+  <section>
     <h2>GDPR Compliance</h2>
 
     <p>
