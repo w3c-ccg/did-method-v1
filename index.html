@@ -1109,21 +1109,46 @@ GDPR compliant manner is still achieved.
   </section>
 </section>
 
-<section>
-  <h1>Accessibility Considerations</h1>
+<section class="informative">
+  <h2>Accessibility Considerations</h2>
 
-  <section>
-    <h2></h2>
+  <p>
+There are a number of accessibility considerations implementers should be
+aware of when processing data described in this specification. As with any web
+standards or protocols implementation, ignoring accessibility issues makes
+this information unusable to a large subset of the population. It is important
+to follow accessibility guidelines and standards, such as [[WCAG21]], to ensure
+all people, regardless of ability, can make use of this data. This is
+especially important when establishing systems utilizing cryptography, which
+have historically created problems for assistive technologies.  While
+DID Documents stored on Veres One are not allowed to contain human readable
+information due to GDPR concerns, it is possible to publish extended information
+to the DID Document through service endpoints and/or other publishing
+mechanisms. This section relates to extended information that can be associated
+with a base Veres One DID Document.
+  </p>
+
+  <p>
+This section details the general accessibility considerations to take into
+account when utilizing this data model.
+  </p>
+
+  <section class="informative">
+    <h3>Data First Approaches</h3>
+
+    <p>
+When utilizing this data model to create DID Documents, it is
+suggested that data model designers use a <em>data first</em> approach. For
+example, given the choice of using data or a graphical image to depict a
+some information, designers should express every element of the image in a
+machine-readable way instead of relying on a viewer's interpretation of the
+image to convey this information. Using a data first approach is preferred
+because it provides the foundational elements of building different interfaces
+for people with varying abilities.
+    </p>
   </section>
 </section>
 
-<section>
-  <h1>Internationalization Considerations</h1>
-
-  <section>
-    <h2></h2>
-  </section>
-</section>
 
 <section class="appendix">
   <h1>Appendix A: Examples</h2>
